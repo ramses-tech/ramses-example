@@ -1,0 +1,42 @@
+#%RAML 0.8
+---
+title: Example REST API
+documentation:
+  - title: Home
+    content: |
+      Welcome to the example API.
+baseUri: http://{host}:{port}/{version}
+version: v1
+mediaType: application/json
+protocols: [HTTP, HTTPS]
+
+/users:
+  displayName: Good users
+  get:
+    description: Get all users
+  post:
+    description: Add new user
+    body:
+      application/json:
+        schema: !include schemas/user.json
+  /{id}:
+    displayName: One good user
+    get:
+      description: Get a particular user
+
+/stories:
+  displayName: Old stories
+  get:
+    description: Get all stories
+  post:
+    description: Add new story
+    body:
+      application/json:
+        schema: !include schemas/story.json
+
+  /{id}:
+    displayName: One good story
+    get:
+      description: Get a particular story
+    delete:
+      description: Delete a particular story

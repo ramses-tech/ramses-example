@@ -1,0 +1,2 @@
+-r requirements.3rd
+git+ssh://git@github.com/brandicted/ramses.git
