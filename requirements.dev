@@ -1,3 +1,6 @@
 -r requirements.3rd
 -e ../ramses
+-e ../nefertari
+-e ../nefertari-mongodb
+-e ../nefertari-sqla
 -e .
