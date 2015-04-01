@@ -24,6 +24,7 @@ protocols: [HTTP, HTTPS]
     get:
       description: Get a particular user
 
+
 /stories:
   displayName: Old stories
   get:
@@ -33,10 +34,11 @@ protocols: [HTTP, HTTPS]
     body:
       application/json:
         schema: !include schemas/story.json
-
   /{id}:
     displayName: One good story
     get:
       description: Get a particular story
     delete:
       description: Delete a particular story
+    put:
+      description: Update a particular story
