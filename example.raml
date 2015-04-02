@@ -10,6 +10,7 @@ version: v1
 mediaType: application/json
 protocols: [HTTP, HTTPS]
 
+
 /users:
   displayName: Good users
   get:
@@ -23,6 +24,15 @@ protocols: [HTTP, HTTPS]
     displayName: One good user
     get:
       description: Get a particular user
+    /stories:
+      displayName: Old stories
+      get:
+        description: Get all stories
+      post:
+        description: Add new story
+        body:
+          application/json:
+            schema: !include schemas/story.json
 
 
 /stories:
