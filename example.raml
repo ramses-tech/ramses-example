@@ -20,10 +20,19 @@ protocols: [HTTP, HTTPS]
     body:
       application/json:
         schema: !include schemas/user.json
+
   /{id}:
     displayName: One good user
     get:
       description: Get a particular user
+
+    /settings:
+      displayName: Old settings
+      get:
+        description: Get all settings
+      post:
+        description: Change setting
+
     /stories:
       displayName: Old stories
       get:
@@ -44,6 +53,7 @@ protocols: [HTTP, HTTPS]
     body:
       application/json:
         schema: !include schemas/story.json
+
   /{id}:
     displayName: One good story
     get:
