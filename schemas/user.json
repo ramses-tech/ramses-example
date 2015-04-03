@@ -1,10 +1,11 @@
 {
     "type": "object",
+    "title": "User schema",
     "$schema": "http://json-schema.org/draft-03/schema",
     "required": true,
     "properties": {
         "id": {
-            "required": false,
+            "required": true,
             "type": "integer"
         },
         "username": {
@@ -34,6 +35,16 @@
         "status": {
             "required": false,
             "type": "string"
+        },
+        "stories": {
+            "required": false,
+            "type": "object"
+        },
+        "settings": {
+            "title": "another schema",
+            "another": {
+                "foo": "bar"
+            }
         }
     }
 }

@@ -10,7 +10,9 @@ version: v1
 mediaType: application/json
 protocols: [HTTP, HTTPS]
 
+
 /users:
+  securedBy: [auth_read]
   displayName: Good users
   get:
     description: Get all users
@@ -19,10 +21,29 @@ protocols: [HTTP, HTTPS]
     body:
       application/json:
         schema: !include schemas/user.json
+
   /{id}:
     displayName: One good user
     get:
       description: Get a particular user
+
+    /settings:
+      displayName: Old settings
+      get:
+        description: Get all settings
+      post:
+        description: Change setting
+
+    /stories:
+      displayName: Old stories
+      get:
+        description: Get all stories
+      post:
+        description: Add new story
+        body:
+          application/json:
+            schema: !include schemas/story.json
+
 
 /stories:
   displayName: Old stories
@@ -40,3 +61,5 @@ protocols: [HTTP, HTTPS]
       description: Get a particular story
     delete:
       description: Delete a particular story
+    put:
+      description: Update a particular story
