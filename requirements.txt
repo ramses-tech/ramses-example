@@ -1,0 +1,8 @@
+pyramid
+
+git+ssh://git@github.com/brandicted/ramses.git
+git+ssh://git@github.com/brandicted/nefertari.git
+git+ssh://git@github.com/brandicted/nefertari-mongodb.git
+git+ssh://git@github.com/brandicted/nefertari-sqla.git
+
+.

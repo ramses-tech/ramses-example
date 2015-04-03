@@ -1,4 +1,5 @@
--r requirements.3rd
+pyramid
+
 -e ../ramses
 -e ../nefertari
 -e ../nefertari-mongodb

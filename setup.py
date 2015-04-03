@@ -1,8 +1,6 @@
 from setuptools import setup, find_packages
 
-
-requires = []
-
+requires = ['pyramid']
 
 setup(name='ramses_example',
       version='0.0.1',
