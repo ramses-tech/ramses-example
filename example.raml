@@ -12,6 +12,7 @@ protocols: [HTTP, HTTPS]
 
 
 /users:
+  securedBy: [auth_read]
   displayName: Good users
   get:
     description: Get all users
