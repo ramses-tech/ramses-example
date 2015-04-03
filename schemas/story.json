@@ -35,6 +35,10 @@
         "description": {
             "required": true,
             "type": "string"
+        },
+        "user_id": {
+            "required": false,
+            "type": "foreign_key"
         }
     }
 }
