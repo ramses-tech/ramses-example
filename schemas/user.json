@@ -86,6 +86,15 @@
         "settings": {
             "required": false,
             "type": "dict"
+        },
+        "profile": {
+            "required": false,
+            "type": "object",
+            "args": {
+                "document": "Profile",
+                "backref_name": "user",
+                "uselist": false
+            }
         }
     }
 }

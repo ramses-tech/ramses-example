@@ -31,6 +31,18 @@ protocols: [HTTP, HTTPS]
     delete:
       description: Delete a particular story
 
+    /profile:
+      displayName: User profile
+      get:
+        description: Get user profile
+      post:
+        description: Create profile
+        body:
+          application/json:
+            schema: !include schemas/profile.json
+      put:
+        description: Update profile
+
     /settings:
       displayName: Old settings
       get:
