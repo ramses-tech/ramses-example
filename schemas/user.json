@@ -6,45 +6,86 @@
     "properties": {
         "id": {
             "required": true,
-            "type": "integer"
-        },
-        "username": {
-            "required": true,
-            "type": "string"
-        },
-        "email": {
-            "required": true,
-            "type": "string"
-        },
-        "password": {
-            "required": true,
-            "type": "string"
-        },
-        "first_name": {
-            "required": false,
-            "type": "string"
-        },
-        "last_name": {
-            "required": false,
-            "type": "string"
-        },
-        "groups": {
-            "required": false,
-            "type": "string"
-        },
-        "status": {
-            "required": false,
-            "type": "string"
+            "type": "primary_key"
         },
         "stories": {
             "required": false,
-            "type": "object"
+            "type": "object",
+            "args": {
+                "document": "Story",
+                "ondelete": "NULLIFY",
+                "backref_name": "user",
+                "backref_ondelete": "NULLIFY"
+            }
+        },
+        "timestamp": {
+            "required": false,
+            "type": "datetime"
+        },
+        "username": {
+            "required": true,
+            "type": "string",
+            "args": {
+                "min_length": 1,
+                "max_length": 50,
+                "unique": true
+            }
+        },
+        "email": {
+            "required": true,
+            "type": "string",
+            "args": {
+                "unique": true
+            }
+        },
+        "password": {
+            "required": true,
+            "type": "string",
+            "args": {
+                "min_length": 3
+            }
+        },
+        "first_name": {
+            "required": false,
+            "type": "string",
+            "args": {
+                "max_length": 50,
+                "default": ""
+            }
+        },
+        "last_name": {
+            "required": false,
+            "type": "string",
+            "args": {
+                "max_length": 50,
+                "default": ""
+            }
+        },
+        "last_login": {
+            "required": false,
+            "type": "string"
+        },
+        "group": {
+            "required": false,
+            "type": "choice",
+            "args": {
+                "choices": ["admin", "user"],
+                "default": "user",
+                "types_name": "user_group_types"
+            }
+        },
+        "status": {
+            "required": false,
+            "type": "string",
+            "args": {
+                "choices": ["active", "inactive", "blocked"],
+                "default": "active",
+                "types_name": "user_status_types"
+            }
         },
         "settings": {
-            "title": "another schema",
-            "another": {
-                "foo": "bar"
-            }
+            "required": false,
+            "type": "dict"
         }
     }
 }
