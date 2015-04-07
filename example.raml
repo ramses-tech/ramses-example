@@ -60,6 +60,12 @@ protocols: [HTTP, HTTPS]
           application/json:
             schema: !include schemas/story.json
 
+      /{id}:
+        displayName: One good story
+        get:
+          description: Get a particular str
+
+
 
 /stories:
   displayName: Old stories
