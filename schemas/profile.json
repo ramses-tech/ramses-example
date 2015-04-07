@@ -1,0 +1,24 @@
+{
+    "type": "object",
+    "title": "Profile schema",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "required": true,
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "primary_key"
+        },
+        "address": {
+            "required": false,
+            "type": "string"
+        },
+        "user_id": {
+            "required": false,
+            "type": "foreign_key",
+            "args": {
+                "ref_document": "User",
+                "ref_column": "user.id"
+            }
+        }
+    }
+}

@@ -26,6 +26,22 @@ protocols: [HTTP, HTTPS]
     displayName: One good user
     get:
       description: Get a particular user
+    put:
+      description: Update a particular story
+    delete:
+      description: Delete a particular story
+
+    /profile:
+      displayName: User profile
+      get:
+        description: Get user profile
+      post:
+        description: Create profile
+        body:
+          application/json:
+            schema: !include schemas/profile.json
+      put:
+        description: Update profile
 
     /settings:
       displayName: Old settings

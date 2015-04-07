@@ -6,39 +6,50 @@
     "properties": {
         "id": {
             "required": true,
-            "type": "integer"
+            "type": "primary_key"
+        },
+        "timestamp": {
+            "required": false,
+            "type": "datetime"
+        },
+        "creation_date": {
+            "required": false,
+            "type": "datetime"
+        },
+        "start_date": {
+            "required": false,
+            "type": "datetime"
+        },
+        "due_date": {
+            "required": false,
+            "type": "datetime"
         },
         "name": {
             "required": true,
             "type": "string"
         },
-        "completed": {
-            "required": false,
-            "type": "boolean"
-        },
-        "due_date": {
-            "required": false,
-            "type": "date"
-        },
-        "updated_at": {
-            "required": false,
-            "type": "date"
-        },
-        "creation_date": {
-            "required": false,
-            "type": "date"
-        },
-        "start_date": {
-            "required": false,
-            "type": "date"
-        },
         "description": {
             "required": true,
             "type": "string"
         },
+        "progress": {
+            "required": true,
+            "type": "float",
+            "args": {
+                "default": 0
+            }
+        },
+        "completed": {
+            "required": true,
+            "type": "boolean"
+        },
         "user_id": {
             "required": false,
-            "type": "foreign_key"
+            "type": "foreign_key",
+            "args": {
+                "ref_document": "User",
+                "ref_column": "user.id"
+            }
         }
     }
 }
