@@ -1,8 +1,8 @@
-pyramid
+nefertari==0.2.0
+nefertari-mongodb==0.1.0
+nefertari-sqla==0.1.0
+pyramid==1.5.4
 
-git+ssh://git@github.com/brandicted/ramses.git
-git+ssh://git@github.com/brandicted/nefertari.git
-git+ssh://git@github.com/brandicted/nefertari-mongodb.git
-git+ssh://git@github.com/brandicted/nefertari-sqla.git
+git+ssh://git@github.com/brandicted/ramses.git@develop
 
 .
