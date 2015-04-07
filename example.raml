@@ -73,9 +73,6 @@ protocols: [HTTP, HTTPS]
     description: Get all stories
   post:
     description: Add new story
-    body:
-      application/json:
-        schema: !include schemas/story.json
 
   /{id}:
     displayName: One good story
