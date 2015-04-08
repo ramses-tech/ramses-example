@@ -2,7 +2,6 @@ nefertari==0.2.0
 nefertari-mongodb==0.1.0
 nefertari-sqla==0.1.0
 pyramid==1.5.4
-
-git+ssh://git@github.com/brandicted/ramses.git@develop
+ramses==0.1.0
 
 .
