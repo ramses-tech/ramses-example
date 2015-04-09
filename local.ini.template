@@ -1,17 +1,21 @@
-[app:main]
+[app:ramses_example]
 use = egg:ramses_example
 raml_schema = example.raml
-#nefertari.engine = nefertari_mongodb
+; nefertari.engine = nefertari_mongodb
 nefertari.engine = nefertari_sqla
 
 auth = false
 auth_tkt_secret = verysecret
+debug = true
+static_cache_max_age = 7200
+public_max_limit = 100
+
 system.user = system
 system.password = 123456
 system.email = user@domain.com
 
 # SQLA
-sqlalchemy.url = postgresql://localhost:5432/ramex
+sqlalchemy.url = postgresql://username:password@localhost:5432/ramex
 
 # MongoDB settings
 mongodb.host = localhost
@@ -24,9 +28,25 @@ elasticsearch.sniff = false
 elasticsearch.index_name = ramex
 elasticsearch.index.disable = false
 
-[server:main]
-use = egg:pyramid#wsgiref
+# ramses_example
+host = localhost
+base_url = http://%(host)s
 
+# CORS
+cors.enable = false
+cors.allow_origins = %(base_url)s
+cors.allow_credentials = true
+
+
+[composite:main]
+use = egg:Paste#urlmap
+/ = ramses_example
+
+[server:main]
+use = egg:waitress#main
+host = 0.0.0.0
+port = 6543
+threads = 3
 
 [loggers]
 keys = root, ramses_example, nefertari, ramses
