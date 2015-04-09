@@ -10,7 +10,7 @@
         },
         "stories": {
             "required": false,
-            "type": "object",
+            "type": "relationship",
             "args": {
                 "document": "Story",
                 "ondelete": "NULLIFY",
@@ -95,6 +95,10 @@
                 "backref_name": "user",
                 "uselist": false
             }
+        },
+        "session": {
+            "required": false,
+            "type": "pickle"
         }
     }
 }

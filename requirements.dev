@@ -1,7 +1,8 @@
 pyramid
 
--e ../ramses
--e ../nefertari
--e ../nefertari-mongodb
--e ../nefertari-sqla
+ramses
+nefertari
+nefertari-mongodb
+nefertari-sqla
+
 -e .

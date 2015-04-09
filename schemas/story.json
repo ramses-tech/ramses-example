@@ -14,15 +14,15 @@
         },
         "creation_date": {
             "required": false,
-            "type": "datetime"
+            "type": "date"
         },
         "start_date": {
             "required": false,
-            "type": "datetime"
+            "type": "date"
         },
         "due_date": {
             "required": false,
-            "type": "datetime"
+            "type": "date"
         },
         "name": {
             "required": true,
@@ -49,7 +49,15 @@
             "args": {
                 "ref_document": "User",
                 "ref_column": "user.id"
+            },
+        "notification_period": {
+            "required": false,
+            "type": "interval"
             }
-        }
+        },
+        "rating": {
+            "required": false,
+            "type": "small_integer"
+        },
     }
 }

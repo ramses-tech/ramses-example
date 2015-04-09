@@ -19,6 +19,38 @@
                 "ref_document": "User",
                 "ref_column": "user.id"
             }
+        },
+        "age": {
+            "required": false,
+            "type": "integer"
+        },
+        "avatar": {
+            "required": false,
+            "type": "file"
+        },
+        "weight": {
+            "required": false,
+            "type": "decimal"
+        },
+        "biography": {
+            "required": false,
+            "type": "text"
+        },
+        "recurring_alarm": {
+            "required": false,
+            "type": "time"
+        },
+        "favorite_emojis": {
+            "required": false,
+            "type": "unicode"
+        },
+        "cryptogram_puzzle": {
+            "required": false,
+            "type": "unicode_text"
+        },
+        "travel_radius": {
+            "required": false,
+            "type": "big_integer"
         }
     }
 }
