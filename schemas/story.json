@@ -6,10 +6,7 @@
     "properties": {
         "id": {
             "required": true,
-            "type": "id_field",
-            "args": {
-                "primary_key": true
-            }
+            "type": "primary_key"
         },
         "timestamp": {
             "required": false,
@@ -51,8 +48,7 @@
             "type": "foreign_key",
             "args": {
                 "ref_document": "User",
-                "ref_column": "user.id",
-                "ref_column_type": "id_field"
+                "ref_column": "user.id"
             }
         }
     }
