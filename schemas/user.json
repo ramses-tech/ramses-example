@@ -6,10 +6,7 @@
     "properties": {
         "id": {
             "required": true,
-            "type": "id_field",
-            "args": {
-                "primary_key": true
-            }
+            "type": "primary_key"
         },
         "stories": {
             "required": false,
