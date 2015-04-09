@@ -1,8 +1,9 @@
-pyramid
+pyramid==1.5.4
+Paste==1.7.5.1
+waitress==0.8.9
 
-ramses
-nefertari
-nefertari-mongodb
-nefertari-sqla
-
+-e ../ramses
+-e ../nefertari
+-e ../nefertari-mongodb
+-e ../nefertari-sqla
 -e .
