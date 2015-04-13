@@ -68,22 +68,21 @@
             "required": false,
             "type": "string"
         },
-        "group": {
+        "groups": {
             "required": false,
-            "type": "choice",
+            "type": "list",
             "args": {
                 "choices": ["admin", "user"],
-                "default": "user",
-                "types_name": "user_group_types"
+                "default": ["user"],
+                "item_type": "string"
             }
         },
         "status": {
             "required": false,
-            "type": "string",
+            "type": "choice",
             "args": {
                 "choices": ["active", "inactive", "blocked"],
-                "default": "active",
-                "types_name": "user_status_types"
+                "default": "active"
             }
         },
         "settings": {
