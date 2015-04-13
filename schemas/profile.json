@@ -34,7 +34,10 @@
         },
         "weight": {
             "required": false,
-            "type": "decimal"
+            "type": "decimal",
+            "args": {
+                "scale": 3
+            }
         },
         "biography": {
             "required": false,
