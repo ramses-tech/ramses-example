@@ -92,7 +92,7 @@
         },
         "profile": {
             "required": false,
-            "type": "object",
+            "type": "relationship",
             "args": {
                 "document": "Profile",
                 "backref_name": "user",
