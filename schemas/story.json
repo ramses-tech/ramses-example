@@ -53,7 +53,7 @@
                 "ref_document": "User",
                 "ref_column": "user.id",
                 "ref_column_type": "id_field"
-            },
+            }
         },
         "notification_period": {
             "required": false,
@@ -62,6 +62,6 @@
         "rating": {
             "required": false,
             "type": "small_integer"
-        },
+        }
     }
 }
