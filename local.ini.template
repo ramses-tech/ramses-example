@@ -40,7 +40,7 @@ cors.allow_credentials = true
 
 [composite:main]
 use = egg:Paste#urlmap
-/ = ramses_example
+/api/ = ramses_example
 
 [server:main]
 use = egg:waitress#main
