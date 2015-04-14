@@ -5,7 +5,7 @@
     "required": true,
     "properties": {
         "id": {
-            "required": true,
+            "required": false,
             "type": "id_field",
             "args": {
                 "primary_key": true
@@ -46,13 +46,13 @@
             "required": true,
             "type": "boolean"
         },
-        "user_id": {
+        "owner_id": {
             "required": false,
             "type": "foreign_key",
             "args": {
                 "ref_document": "User",
-                "ref_column": "user.id",
-                "ref_column_type": "id_field"
+                "ref_column": "user.username",
+                "ref_column_type": "string"
             }
         },
         "signs_number": {

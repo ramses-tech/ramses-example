@@ -5,7 +5,7 @@
     "required": true,
     "properties": {
         "id": {
-            "required": true,
+            "required": false,
             "type": "id_field",
             "args": {
                 "primary_key": true

@@ -5,11 +5,8 @@
     "required": true,
     "properties": {
         "id": {
-            "required": true,
-            "type": "id_field",
-            "args": {
-                "primary_key": true
-            }
+            "required": false,
+            "type": "id_field"
         },
         "stories": {
             "required": false,
@@ -31,7 +28,8 @@
             "args": {
                 "min_length": 1,
                 "max_length": 50,
-                "unique": true
+                "unique": true,
+                "primary_key": true
             }
         },
         "email": {

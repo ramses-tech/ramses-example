@@ -44,7 +44,7 @@ protocols: [HTTP, HTTPS]
       application/json:
         schema: !include schemas/user.json
 
-  /{id}:
+  /{username}:
     displayName: One good user
     get:
       description: Get a particular user
