@@ -17,7 +17,7 @@
             "args": {
                 "document": "Story",
                 "ondelete": "NULLIFY",
-                "backref_name": "user",
+                "backref_name": "owner",
                 "backref_ondelete": "NULLIFY"
             }
         },
@@ -66,7 +66,7 @@
         },
         "last_login": {
             "required": false,
-            "type": "string"
+            "type": "datetime"
         },
         "groups": {
             "required": false,
@@ -88,19 +88,6 @@
         "settings": {
             "required": false,
             "type": "dict"
-        },
-        "profile": {
-            "required": false,
-            "type": "relationship",
-            "args": {
-                "document": "Profile",
-                "backref_name": "user",
-                "uselist": false
-            }
-        },
-        "session": {
-            "required": false,
-            "type": "pickle"
         }
     }
 }
