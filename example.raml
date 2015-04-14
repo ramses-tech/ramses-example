@@ -10,6 +10,28 @@ version: v1
 mediaType: application/json
 protocols: [HTTP, HTTPS]
 
+/stories:
+  displayName: Old stories
+  get:
+    description: Get all stories
+  post:
+    description: Add new story
+    body:
+      application/json:
+        schema: !include schemas/story.json
+  patch:
+    description: Update multiple story
+  delete:
+    description: delete multiple story
+
+  /{id}:
+    displayName: One good story
+    get:
+      description: Get a particular story
+    delete:
+      description: Delete a particular story
+    patch:
+      description: Update a particular story
 
 /users:
   securedBy: [auth_read]
@@ -22,14 +44,28 @@ protocols: [HTTP, HTTPS]
       application/json:
         schema: !include schemas/user.json
 
-  /{id}:
+  /{username}:
     displayName: One good user
     get:
       description: Get a particular user
-    put:
+    patch:
       description: Update a particular story
     delete:
       description: Delete a particular story
+
+    /settings:
+      displayName: Old settings
+      get:
+        description: Get all settings
+      post:
+        description: Change settings
+
+    /groups:
+      displayName: Old groups
+      get:
+        description: Get all groups
+      post:
+        description: Change groups
 
     /profile:
       displayName: User profile
@@ -42,43 +78,3 @@ protocols: [HTTP, HTTPS]
             schema: !include schemas/profile.json
       put:
         description: Update profile
-
-    /settings:
-      displayName: Old settings
-      get:
-        description: Get all settings
-      post:
-        description: Change setting
-
-    /stories:
-      displayName: Old stories
-      get:
-        description: Get all stories
-      post:
-        description: Add new story
-        body:
-          application/json:
-            schema: !include schemas/story.json
-
-      /{id}:
-        displayName: One good story
-        get:
-          description: Get a particular str
-
-
-
-/stories:
-  displayName: Old stories
-  get:
-    description: Get all stories
-  post:
-    description: Add new story
-
-  /{id}:
-    displayName: One good story
-    get:
-      description: Get a particular story
-    delete:
-      description: Delete a particular story
-    put:
-      description: Update a particular story

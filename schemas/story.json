@@ -5,7 +5,7 @@
     "required": true,
     "properties": {
         "id": {
-            "required": true,
+            "required": false,
             "type": "id_field",
             "args": {
                 "primary_key": true
@@ -17,15 +17,15 @@
         },
         "creation_date": {
             "required": false,
-            "type": "date"
+            "type": "datetime"
         },
         "start_date": {
             "required": false,
-            "type": "date"
+            "type": "datetime"
         },
         "due_date": {
             "required": false,
-            "type": "date"
+            "type": "datetime"
         },
         "name": {
             "required": true,
@@ -33,7 +33,7 @@
         },
         "description": {
             "required": true,
-            "type": "string"
+            "type": "text"
         },
         "progress": {
             "required": true,
@@ -49,22 +49,64 @@
                 "default": false
             }
         },
-        "user_id": {
+        "owner_id": {
             "required": false,
             "type": "foreign_key",
             "args": {
                 "ref_document": "User",
-                "ref_column": "user.id",
-                "ref_column_type": "id_field"
+                "ref_column": "user.username",
+                "ref_column_type": "string"
             }
         },
-        "notification_period": {
+        "signs_number": {
             "required": false,
-            "type": "interval"
+            "type": "big_integer"
+        },
+        "valid_date": {
+            "required": false,
+            "type": "date"
+        },
+        "valid_time": {
+            "required": false,
+            "type": "time"
+        },
+        "reads": {
+            "required": false,
+            "type": "integer",
+            "args": {
+                "default": 0
+            }
         },
         "rating": {
             "required": false,
             "type": "small_integer"
+        },
+        "available_for": {
+            "required": false,
+            "type": "interval"
+        },
+        "attachment": {
+            "required": false,
+            "type": "file"
+        },
+        "price": {
+            "required": false,
+            "type": "decimal",
+            "args": {
+                "scale": 10
+            }
+        },
+        "arbitrary_object": {
+            "required": false,
+            "type": "pickle"
+        },
+        "unicode_name": {
+            "required": false,
+            "type": "unicode"
+        },
+        "unicode_description": {
+            "required": false,
+            "type": "unicode_text"
         }
     }
 }
