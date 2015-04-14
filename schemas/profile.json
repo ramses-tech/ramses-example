@@ -13,51 +13,16 @@
         },
         "address": {
             "required": false,
-            "type": "string"
+            "type": "unicode_text"
         },
         "user_id": {
             "required": false,
             "type": "foreign_key",
             "args": {
                 "ref_document": "User",
-                "ref_column": "user.id",
-                "ref_column_type": "id_field"
+                "ref_column": "user.username",
+                "ref_column_type": "string"
             }
-        },
-        "age": {
-            "required": false,
-            "type": "integer"
-        },
-        "avatar": {
-            "required": false,
-            "type": "file"
-        },
-        "weight": {
-            "required": false,
-            "type": "decimal",
-            "args": {
-                "scale": 3
-            }
-        },
-        "biography": {
-            "required": false,
-            "type": "text"
-        },
-        "recurring_alarm": {
-            "required": false,
-            "type": "time"
-        },
-        "favorite_emojis": {
-            "required": false,
-            "type": "unicode"
-        },
-        "cryptogram_puzzle": {
-            "required": false,
-            "type": "unicode_text"
-        },
-        "travel_radius": {
-            "required": false,
-            "type": "big_integer"
         }
     }
 }

@@ -66,3 +66,15 @@ protocols: [HTTP, HTTPS]
         description: Get all groups
       post:
         description: Change groups
+
+    /profile:
+      displayName: User profile
+      get:
+        description: Get user profile
+      post:
+        description: Create profile
+        body:
+          application/json:
+            schema: !include schemas/profile.json
+      put:
+        description: Update profile

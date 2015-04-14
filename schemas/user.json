@@ -8,6 +8,15 @@
             "required": false,
             "type": "id_field"
         },
+        "profile": {
+            "required": false,
+            "type": "relationship",
+            "args": {
+                "document": "Profile",
+                "backref_name": "user",
+                "uselist": false
+            }
+        },
         "stories": {
             "required": false,
             "type": "relationship",
