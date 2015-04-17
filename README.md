@@ -18,7 +18,7 @@ $ pserve local.ini
 
 ## Play
 ```
-$ curl -XPOST ':8080/stories' -H 'Content-Type: application/json' -d '{"name":"New Story","description":"This is a new story"}'
-$ curl ':8080/stories/1'
-$ curl -XDELETE ':8080/stories/1'
+$ curl -XPOST 'http://localhost:6543/api/stories' -H 'Content-Type: application/json' -d '{"name":"New Story","description":"This is a new story"}'
+$ curl 'http://localhost:6543/api/stories/1'
+$ curl -XDELETE 'http://localhost:6543/api/stories/1'
 ```
