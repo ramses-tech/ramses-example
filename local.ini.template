@@ -1,10 +1,11 @@
 [app:ramses_example]
 use = egg:ramses_example
 ramses.raml_schema = example.raml
+
 ; nefertari.engine = nefertari_mongodb
 nefertari.engine = nefertari_sqla
 
-auth = false
+ramses.auth = false
 auth_tkt_secret = verysecret
 debug = true
 static_cache_max_age = 7200
