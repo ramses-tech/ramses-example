@@ -9,9 +9,12 @@ baseUri: http://{host}:{port}/{version}
 version: v1
 mediaType: application/json
 protocols: [HTTP, HTTPS]
-securedBy: [my_ticket_auth]
+securedBy: [my_token_auth]
 
 securitySchemes:
+  my_token_auth:
+    description: Authorization header token policy
+    type: x-ApiKey
   my_ticket_auth:
     description: Standard Pyramid Auth Ticket policy
     type: x-Ticket
