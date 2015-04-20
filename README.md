@@ -16,9 +16,28 @@ The setting `nefertari.engine` can be set to either `nefertari_mongodb` or `nefe
 $ pserve local.ini
 ```
 
-## Play
+## Login
+POST `<host>/api/auth/login`
+```json
+{
+    "login": "<config.system.user>",
+    "password": "<config.system.password>"
+}
 ```
-$ curl -XPOST 'http://localhost:6543/api/stories' -H 'Content-Type: application/json' -d '{"name":"New Story","description":"This is a new story"}'
-$ curl 'http://localhost:6543/api/stories/1'
-$ curl -XDELETE 'http://localhost:6543/api/stories/1'
+
+or in the browser:
 ```
+<host>/api/auth/login?_m=POST&login=<config.system.user>&password=<config.system.password>
+```
+
+## Add mock data
+```
+$ mkdir mock
+$ curl -o mock/Users.json https://raw.githubusercontent.com/brandicted/nefertari-example/develop/mock/Users.json
+$ curl -o mock/Profiles.json https://raw.githubusercontent.com/brandicted/nefertari-example/develop/mock/Profiles.json
+$ curl -o mock/Stories.json https://raw.githubusercontent.com/brandicted/nefertari-example/develop/mock/Stories.json
+$ nefertari.post2api -f ./mock/Users.json -u http://localhost:6543/api/users
+$ nefertari.post2api -f ./mock/Profiles.json -u http://localhost:6543/api/users/{username}/profile
+$ nefertari.post2api -f ./mock/Stories.json -u http://localhost:6543/api/stories
+```
+NOTE: set auth = false in local.ini file before executing
