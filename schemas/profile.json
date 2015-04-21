@@ -5,19 +5,23 @@
     "required": true,
     "properties": {
         "id": {
-            "required": true,
-            "type": "primary_key"
+            "required": false,
+            "type": "id_field",
+            "args": {
+                "primary_key": true
+            }
         },
         "address": {
             "required": false,
-            "type": "string"
+            "type": "unicode_text"
         },
         "user_id": {
             "required": false,
             "type": "foreign_key",
             "args": {
                 "ref_document": "User",
-                "ref_column": "user.id"
+                "ref_column": "user.username",
+                "ref_column_type": "string"
             }
         }
     }

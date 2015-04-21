@@ -5,16 +5,25 @@
     "required": true,
     "properties": {
         "id": {
-            "required": true,
-            "type": "primary_key"
+            "required": false,
+            "type": "id_field"
+        },
+        "profile": {
+            "required": false,
+            "type": "relationship",
+            "args": {
+                "document": "Profile",
+                "backref_name": "user",
+                "uselist": false
+            }
         },
         "stories": {
             "required": false,
-            "type": "object",
+            "type": "relationship",
             "args": {
                 "document": "Story",
                 "ondelete": "NULLIFY",
-                "backref_name": "user",
+                "backref_name": "owner",
                 "backref_ondelete": "NULLIFY"
             }
         },
@@ -28,7 +37,8 @@
             "args": {
                 "min_length": 1,
                 "max_length": 50,
-                "unique": true
+                "unique": true,
+                "primary_key": true
             }
         },
         "email": {
@@ -63,38 +73,28 @@
         },
         "last_login": {
             "required": false,
-            "type": "string"
+            "type": "datetime"
         },
-        "group": {
+        "groups": {
             "required": false,
-            "type": "choice",
+            "type": "list",
             "args": {
                 "choices": ["admin", "user"],
-                "default": "user",
-                "types_name": "user_group_types"
+                "default": ["user"],
+                "item_type": "string"
             }
         },
         "status": {
             "required": false,
-            "type": "string",
+            "type": "choice",
             "args": {
                 "choices": ["active", "inactive", "blocked"],
-                "default": "active",
-                "types_name": "user_status_types"
+                "default": "active"
             }
         },
         "settings": {
             "required": false,
             "type": "dict"
-        },
-        "profile": {
-            "required": false,
-            "type": "object",
-            "args": {
-                "document": "Profile",
-                "backref_name": "user",
-                "uselist": false
-            }
         }
     }
 }

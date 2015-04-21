@@ -1,4 +1,5 @@
 venv
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -57,3 +58,4 @@ target/
 
 local.ini
 post2api.py
+mock/
