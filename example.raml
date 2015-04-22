@@ -9,7 +9,7 @@ baseUri: http://{host}:{port}/{version}
 version: v1
 mediaType: application/json
 protocols: [HTTP, HTTPS]
-securedBy: [my_token_auth]
+securedBy: [my_ticket_auth]
 
 securitySchemes:
   my_token_auth:
@@ -23,8 +23,17 @@ securitySchemes:
       hashalg: sha512
       cookie_name: ramses_auth_tkt
       http_only: 'true'
+  authenticated_read_acl:
+    description: ACL that allows reads to authenticated users
+    type: x-ACL
+    settings:
+      collection: |
+        allow admin all
+        allow authenticated get
+      item: allow admin all; allow authenticated get
 
 /stories:
+  securedBy: [null]
   displayName: Old stories
   get:
     description: Get all stories
@@ -48,7 +57,7 @@ securitySchemes:
       description: Update a particular story
 
 /users:
-  securedBy: [auth_read]
+  securedBy: [authenticated_read_acl]
   displayName: Good users
   get:
     description: Get all users
