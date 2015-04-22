@@ -30,7 +30,10 @@ securitySchemes:
       collection: |
         allow admin all
         allow authenticated get
-      item: allow admin all; allow authenticated get
+      item: |
+        allow admin all
+        allow authenticated get
+        allow {{user_himself}} patch
 
 /stories:
   securedBy: [null]
