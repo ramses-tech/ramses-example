@@ -23,13 +23,13 @@ securitySchemes:
       hashalg: sha512
       cookie_name: ramses_auth_tkt
       http_only: 'true'
-  authenticated_read_acl:
+  authenticated_crud_acl:
     description: ACL that allows reads to authenticated users
     type: x-ACL
     settings:
       collection: |
         allow admin all
-        allow authenticated get
+        allow authenticated get, post
       item: |
         allow admin all
         allow authenticated get
@@ -60,7 +60,7 @@ securitySchemes:
       description: Update a particular story
 
 /users:
-  securedBy: [authenticated_read_acl]
+  securedBy: [authenticated_crud_acl]
   displayName: Good users
   get:
     description: Get all users
@@ -80,6 +80,7 @@ securitySchemes:
       description: Delete a particular story
 
     /settings:
+      securedBy: [null]
       displayName: Old settings
       get:
         description: Get all settings
@@ -87,6 +88,7 @@ securitySchemes:
         description: Change settings
 
     /groups:
+      securedBy: [null]
       displayName: Old groups
       get:
         description: Get all groups
@@ -94,6 +96,7 @@ securitySchemes:
         description: Change groups
 
     /profile:
+      securedBy: [null]
       displayName: User profile
       get:
         description: Get user profile
