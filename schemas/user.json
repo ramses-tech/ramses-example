@@ -3,6 +3,8 @@
     "title": "User schema",
     "$schema": "http://json-schema.org/draft-03/schema",
     "required": true,
+    "hidden_fields": ["password", "timestamp", "last_login", "updated_at"],
+    "auth_fields": ["email", "status"],
     "properties": {
         "id": {
             "required": false,
