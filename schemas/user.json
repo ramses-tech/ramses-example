@@ -5,6 +5,7 @@
     "required": true,
     "hidden_fields": ["password", "timestamp", "last_login", "updated_at"],
     "auth_fields": ["email", "status"],
+    "nested_relationships": ["stories"],
     "properties": {
         "id": {
             "required": false,
