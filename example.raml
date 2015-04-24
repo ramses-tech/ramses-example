@@ -33,10 +33,9 @@ securitySchemes:
       item: |
         allow admin all
         allow authenticated get
-        allow {{user_himself}} patch
+        allow {{user_oneself}} patch
 
 /stories:
-  securedBy: [null]
   displayName: Old stories
   get:
     description: Get all stories
@@ -80,7 +79,6 @@ securitySchemes:
       description: Delete a particular story
 
     /settings:
-      securedBy: [null]
       displayName: Old settings
       get:
         description: Get all settings
@@ -88,7 +86,6 @@ securitySchemes:
         description: Change settings
 
     /groups:
-      securedBy: [null]
       displayName: Old groups
       get:
         description: Get all groups
@@ -96,7 +93,6 @@ securitySchemes:
         description: Change groups
 
     /profile:
-      securedBy: [null]
       displayName: User profile
       get:
         description: Get user profile

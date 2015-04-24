@@ -3,7 +3,7 @@ from ramses import registry
 
 
 @registry.add
-def user_himself(ace, request, obj):
+def user_oneself(ace, request, obj):
     """ Give 'patch' permission to user when he tries to edit
     his own User object.
     """
