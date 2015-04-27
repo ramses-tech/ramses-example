@@ -3,10 +3,8 @@ from ramses import registry
 
 
 @registry.add
-def user_oneself(ace, request, obj):
-    """ Give 'patch' permission to user when he tries to edit
-    his own User object.
-    """
+def user_self(ace, request, obj):
+    """ Give 'patch' permission to user when trying to edit itself. """
     from pyramid.security import Allow
     user = getattr(request, 'user', None)
     if user is not None and user.username == obj.username:
