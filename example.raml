@@ -23,6 +23,17 @@ securitySchemes:
       hashalg: sha512
       cookie_name: ramses_auth_tkt
       http_only: 'true'
+  authenticated_crud_acl:
+    description: ACL that allows reads to authenticated users
+    type: x-ACL
+    settings:
+      collection: |
+        allow admin all
+        allow authenticated get, post
+      item: |
+        allow admin all
+        allow authenticated get
+        allow {{user_oneself}} patch
 
 /stories:
   displayName: Old stories
@@ -48,7 +59,7 @@ securitySchemes:
       description: Update a particular story
 
 /users:
-  securedBy: [auth_read]
+  securedBy: [authenticated_crud_acl]
   displayName: Good users
   get:
     description: Get all users
