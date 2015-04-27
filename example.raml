@@ -9,6 +9,20 @@ baseUri: http://{host}:{port}/{version}
 version: v1
 mediaType: application/json
 protocols: [HTTP, HTTPS]
+securedBy: [my_token_auth]
+
+securitySchemes:
+  my_token_auth:
+    description: Authorization header token policy
+    type: x-ApiKey
+  my_ticket_auth:
+    description: Standard Pyramid Auth Ticket policy
+    type: x-Ticket
+    settings:
+      secret: auth_tkt_secret
+      hashalg: sha512
+      cookie_name: ramses_auth_tkt
+      http_only: 'true'
 
 /stories:
   displayName: Old stories
