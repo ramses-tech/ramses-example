@@ -17,17 +17,21 @@ $ pserve local.ini
 ```
 
 ## Login
-POST `<host>/api/auth/login`
+
+If using ticket_auth, <login_url> is `<host>/api/auth/login`
+If using token_auth, <login_url> is `<host>/api/auth/token`
+
+POST `<login_url>`
 ```json
 {
     "login": "<config.system.user>",
     "password": "<config.system.password>"
 }
-```
 
+```
 or in the browser:
 ```
-<host>/api/auth/login?_m=POST&login=<config.system.user>&password=<config.system.password>
+<login_url>?_m=POST&login=<config.system.user>&password=<config.system.password>
 ```
 
 ## Add mock data
