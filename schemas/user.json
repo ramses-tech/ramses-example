@@ -3,8 +3,8 @@
     "title": "User schema",
     "$schema": "http://json-schema.org/draft-03/schema",
     "required": true,
-    "public_fields": ["username", "first_name", "last_name"],
-    "auth_fields": ["id", "username", "first_name", "last_name", "_type", "stories"],
+    "auth_fields": ["id", "username", "first_name", "last_name", "stories"],
+    "public_fields": ["username"],
     "nested_relationships": ["stories"],
     "properties": {
         "id": {
