@@ -6,11 +6,11 @@ from ramses import registry
 log = logging.getLogger(__name__)
 
 
-def is_admin(cls, user):
+def my_is_admin(cls, user):
     """ Example of overriding  """
     log.info('Checking if user {} is admin'.format(user))
     return 'admin' in user.groups
-registry.add('User.is_admin', classmethod(is_admin))
+registry.add('User.is_admin', classmethod(my_is_admin))
 
 
 @registry.add
