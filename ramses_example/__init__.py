@@ -1,5 +1,16 @@
+import logging
+
 from pyramid.config import Configurator
 from ramses import registry
+
+log = logging.getLogger(__name__)
+
+
+def my_is_admin(cls, user):
+    """ Example of overriding  """
+    log.info('Checking if user {} is admin'.format(user))
+    return 'admin' in user.groups
+registry.add('User.is_admin', classmethod(my_is_admin))
 
 
 @registry.add
@@ -12,6 +23,21 @@ def user_self(ace, request, obj):
             (Allow, str(user.id), 'patch'),
             (Allow, str(user.username), 'patch'),
         ]
+
+
+@registry.add
+def lower_strip_processor(value):
+    return (value or '').lower().strip()
+
+
+@registry.add
+def crypt_processor(value):
+    """ Crypt :value: if it's not crypted yet """
+    import cryptacular.bcrypt
+    crypt = cryptacular.bcrypt.BCRYPTPasswordManager()
+    if value and not crypt.match(value):
+        value = unicode(crypt.encode(value))
+    return value
 
 
 def main(global_config, **settings):

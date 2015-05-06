@@ -6,6 +6,7 @@
     "auth_fields": ["id", "username", "first_name", "last_name", "stories"],
     "public_fields": ["username"],
     "nested_relationships": ["stories"],
+    "auth_model": true,
     "properties": {
         "id": {
             "required": false,
@@ -41,21 +42,24 @@
                 "min_length": 1,
                 "max_length": 50,
                 "unique": true,
-                "primary_key": true
+                "primary_key": true,
+                "processors": ["lower_strip_processor"]
             }
         },
         "email": {
             "required": true,
             "type": "string",
             "args": {
-                "unique": true
+                "unique": true,
+                "processors": ["lower_strip_processor"]
             }
         },
         "password": {
             "required": true,
             "type": "string",
             "args": {
-                "min_length": 3
+                "min_length": 3,
+                "processors": ["crypt_processor"]
             }
         },
         "first_name": {
