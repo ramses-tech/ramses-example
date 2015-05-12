@@ -2,9 +2,9 @@
 ---
 title: Example REST API
 documentation:
-  - title: Home
-    content: |
-      Welcome to the example API.
+    - title: Home
+      content: |
+        Welcome to the example API.
 baseUri: http://{host}:{port}/{version}
 version: v1
 mediaType: application/json
@@ -12,105 +12,105 @@ protocols: [HTTP, HTTPS]
 securedBy: [my_ticket_auth]
 
 securitySchemes:
-  my_token_auth:
-    description: Authorization header token policy
-    type: x-ApiKey
-  my_ticket_auth:
-    description: Standard Pyramid Auth Ticket policy
-    type: x-Ticket
-    settings:
-      secret: auth_tkt_secret
-      hashalg: sha512
-      cookie_name: ramses_auth_tkt
-      http_only: 'true'
-  read_only_users:
-    description: ACL that allows authenticated users to read collection
-    type: x-ACL
-    settings:
-      collection: |
-        allow admin all
-        allow authenticated get
-      item: |
-        allow admin all
-        allow authenticated get
-  read_only_useritem_everyone:
-    description: ACL that allows everyone to read item, authenticated users to read collection
-    type: x-ACL
-    settings:
-      collection: |
-        allow admin all
-        allow authenticated get
-      item: |
-        allow admin all
-        allow everyone get
-        allow {{user_self}} patch
+    my_token_auth:
+        description: Authorization header token policy
+        type: x-ApiKey
+    my_ticket_auth:
+        description: Standard Pyramid Auth Ticket policy
+        type: x-Ticket
+        settings:
+            secret: auth_tkt_secret
+            hashalg: sha512
+            cookie_name: ramses_auth_tkt
+            http_only: 'true'
+    read_only_users:
+        description: ACL that allows authenticated users to read collection
+        type: x-ACL
+        settings:
+            collection: |
+                allow admin all
+                allow authenticated get
+            item: |
+                allow admin all
+                allow authenticated get
+    read_only_useritem_everyone:
+        description: ACL that allows everyone to read item, authenticated users to read collection
+        type: x-ACL
+        settings:
+            collection: |
+                allow admin all
+                allow authenticated get
+            item: |
+                allow admin all
+                allow everyone get
+                allow {{user_self}} patch
 
 /stories:
-  securedBy: [read_only_users]
-  displayName: Old stories
-  get:
-    description: Get all stories
-  post:
-    description: Add new story
-    body:
-      application/json:
-        schema: !include schemas/story.json
-  patch:
-    description: Update multiple story
-  delete:
-    description: delete multiple story
-
-  /{id}:
-    displayName: One good story
+    securedBy: [read_only_users]
+    displayName: All stories
     get:
-      description: Get a particular story
-    delete:
-      description: Delete a particular story
+        description: Get all stories
+    post:
+        description: Create a new story
+        body:
+            application/json:
+                schema: !include schemas/story.json
     patch:
-      description: Update a particular story
+        description: Update multiple stories
+    delete:
+        description: delete multiple stories
+
+    /{id}:
+        displayName: One story
+        get:
+            description: Get a particular story
+        delete:
+            description: Delete a particular story
+        patch:
+            description: Update a particular story
 
 /users:
-  securedBy: [read_only_useritem_everyone]
-  displayName: Good users
-  get:
-    description: Get all users
-  post:
-    description: Add new user
-    body:
-      application/json:
-        schema: !include schemas/user.json
-
-  /{username}:
-    displayName: One good user
+    securedBy: [read_only_useritem_everyone]
+    displayName: All users
     get:
-      description: Get a particular user
-    patch:
-      description: Update a particular story
-    delete:
-      description: Delete a particular story
-
-    /settings:
-      displayName: Old settings
-      get:
-        description: Get all settings
-      post:
-        description: Change settings
-
-    /groups:
-      displayName: Old groups
-      get:
-        description: Get all groups
-      post:
-        description: Change groups
-
-    /profile:
-      displayName: User profile
-      get:
-        description: Get user profile
-      post:
-        description: Create profile
+        description: Get all users
+    post:
+        description: Create a new user
         body:
-          application/json:
-            schema: !include schemas/profile.json
-      put:
-        description: Update profile
+            application/json:
+                schema: !include schemas/user.json
+
+    /{username}:
+        displayName: One user
+        get:
+            description: Get a particular user
+        patch:
+            description: Update a particular user
+        delete:
+            description: Delete a particular user
+
+        /settings:
+            displayName: User settings
+            get:
+                description: Get all settings of a particular user
+            post:
+                description: Change a user's settings
+
+        /groups:
+            displayName: User groups
+            get:
+                description: Get all groups of a particular user
+            post:
+                description: Change a user's groups
+
+        /profile:
+            displayName: User profile
+            get:
+                description: Get a user's profile
+            post:
+                description: Create a user's profile
+                body:
+                    application/json:
+                        schema: !include schemas/profile.json
+            put:
+                description: Update a user's profile
