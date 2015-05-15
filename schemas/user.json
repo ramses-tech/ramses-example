@@ -5,7 +5,7 @@
     "required": true,
     "auth_fields": ["id", "username", "first_name", "last_name", "stories"],
     "public_fields": ["username"],
-    "nested_relationships": ["stories"],
+    "nested_relationships": ["profile"],
     "auth_model": true,
     "properties": {
         "id": {
