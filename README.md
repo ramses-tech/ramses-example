@@ -18,13 +18,14 @@ $ pserve local.ini
 
 ## Login
 POST `<host>/api/auth/login`
+
 ```json
 {
     "login": "<config.system.user>",
     "password": "<config.system.password>"
 }
-```
 
+```
 or in the browser:
 ```
 <host>/api/auth/login?_m=POST&login=<config.system.user>&password=<config.system.password>
