@@ -28,8 +28,7 @@
                 "document": "Story",
                 "ondelete": "NULLIFY",
                 "backref_name": "owner",
-                "backref_ondelete": "NULLIFY",
-                "backref_lazy": "joined"
+                "backref_ondelete": "NULLIFY"
             }
         },
         "timestamp": {
