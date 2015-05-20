@@ -28,7 +28,19 @@
                 "document": "Story",
                 "ondelete": "NULLIFY",
                 "backref_name": "owner",
-                "backref_ondelete": "NULLIFY"
+                "backref_ondelete": "NULLIFY",
+                "foreign_keys": "Story.owner_id"
+            }
+        },
+        "assigned_stories": {
+            "required": false,
+            "type": "relationship",
+            "args": {
+                "document": "Story",
+                "ondelete": "NULLIFY",
+                "backref_name": "assignee",
+                "backref_ondelete": "NULLIFY",
+                "foreign_keys": "Story.assignee_id"
             }
         },
         "timestamp": {

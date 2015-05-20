@@ -60,6 +60,15 @@
                 "ref_column_type": "string"
             }
         },
+        "assignee_id": {
+            "required": false,
+            "type": "foreign_key",
+            "args": {
+                "ref_document": "User",
+                "ref_column": "user.username",
+                "ref_column_type": "string"
+            }
+        },
         "signs_number": {
             "required": false,
             "type": "big_integer"
