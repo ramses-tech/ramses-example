@@ -26,18 +26,18 @@ def user_self(ace, request, obj):
 
 
 @registry.add
-def lower_strip_processor(value):
-    return (value or '').lower().strip()
+def lower_strip_processor(instance, new_value):
+    return (new_value or '').lower().strip()
 
 
 @registry.add
-def crypt_processor(value):
-    """ Crypt :value: if it's not crypted yet """
+def crypt_processor(instance, new_value):
+    """ Crypt :new_value: if it's not crypted yet """
     import cryptacular.bcrypt
     crypt = cryptacular.bcrypt.BCRYPTPasswordManager()
-    if value and not crypt.match(value):
-        value = unicode(crypt.encode(value))
-    return value
+    if new_value and not crypt.match(new_value):
+        new_value = unicode(crypt.encode(new_value))
+    return new_value
 
 
 def main(global_config, **settings):
