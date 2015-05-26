@@ -23,11 +23,24 @@
         },
         "start_date": {
             "required": false,
-            "type": "datetime"
+            "type": "datetime",
+            "args": {
+                "processors": ["calculate_days_indirect"]
+            }
         },
         "due_date": {
             "required": false,
-            "type": "datetime"
+            "type": "datetime",
+            "args": {
+                "processors": ["calculate_days_indirect"]
+            }
+        },
+        "days": {
+            "required": false,
+            "type": "integer",
+            "args": {
+                "processors": ["calculate_days"]
+            }
         },
         "name": {
             "required": true,
