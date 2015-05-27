@@ -2,7 +2,6 @@
     "type": "object",
     "title": "Story schema",
     "$schema": "http://json-schema.org/draft-03/schema",
-    "required": true,
     "auth_fields": ["id", "start_date", "due_date", "name", "description", "progress"],
     "public_fields": ["id", "start_date", "due_date", "name"],
     "properties": {

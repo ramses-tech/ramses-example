@@ -2,7 +2,6 @@
     "type": "object",
     "title": "Profile schema",
     "$schema": "http://json-schema.org/draft-03/schema",
-    "required": true,
     "properties": {
         "id": {
             "required": false,
