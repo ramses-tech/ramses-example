@@ -55,7 +55,7 @@
                 "max_length": 50,
                 "unique": true,
                 "primary_key": true,
-                "processors": ["lower_strip_processor"]
+                "pre_processors": ["lower_strip_processor"]
             }
         },
         "email": {
@@ -63,7 +63,7 @@
             "type": "string",
             "args": {
                 "unique": true,
-                "processors": ["lower_strip_processor"]
+                "pre_processors": ["lower_strip_processor"]
             }
         },
         "password": {
@@ -71,7 +71,7 @@
             "type": "string",
             "args": {
                 "min_length": 3,
-                "processors": ["crypt_processor"]
+                "post_processors": ["crypt_processor"]
             }
         },
         "first_name": {
