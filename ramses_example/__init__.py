@@ -27,7 +27,9 @@ def user_self(ace, request, obj):
 
 @registry.add
 def lower_strip_processor(instance, new_value):
-    return (new_value or '').lower().strip()
+    if new_value is None:
+        return new_value
+    return new_value.lower().strip()
 
 
 @registry.add
