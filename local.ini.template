@@ -27,6 +27,7 @@ elasticsearch.hosts = localhost:9200
 elasticsearch.sniff = false
 elasticsearch.index_name = ramex
 elasticsearch.index.disable = false
+elasticsearch.enable_refresh_query = true
 
 # ramses_example
 host = localhost
