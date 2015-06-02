@@ -2,7 +2,6 @@
     "type": "object",
     "title": "User schema",
     "$schema": "http://json-schema.org/draft-03/schema",
-    "required": true,
     "auth_fields": ["id", "username", "first_name", "last_name", "stories"],
     "public_fields": ["username"],
     "nested_relationships": ["profile"],
