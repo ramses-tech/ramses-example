@@ -2,7 +2,6 @@
     "type": "object",
     "title": "User schema",
     "$schema": "http://json-schema.org/draft-03/schema",
-    "required": true,
     "auth_fields": ["id", "username", "first_name", "last_name", "stories"],
     "public_fields": ["username"],
     "nested_relationships": ["profile"],
@@ -55,7 +54,7 @@
                 "max_length": 50,
                 "unique": true,
                 "primary_key": true,
-                "processors": ["lower_strip_processor"]
+                "before_validation": ["lower_strip_processor"]
             }
         },
         "email": {
@@ -63,7 +62,7 @@
             "type": "string",
             "args": {
                 "unique": true,
-                "processors": ["lower_strip_processor"]
+                "before_validation": ["lower_strip_processor"]
             }
         },
         "password": {
@@ -71,7 +70,7 @@
             "type": "string",
             "args": {
                 "min_length": 3,
-                "processors": ["crypt_processor"]
+                "after_validation": ["crypt_processor"]
             }
         },
         "first_name": {

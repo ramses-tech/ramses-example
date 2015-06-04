@@ -5,7 +5,7 @@ ramses.raml_schema = example.raml
 ; nefertari.engine = nefertari_mongodb
 nefertari.engine = nefertari_sqla
 
-ramses.auth = false
+ramses.auth = true
 auth_tkt_secret = verysecret
 debug = true
 public_max_limit = 100
@@ -27,6 +27,7 @@ elasticsearch.hosts = localhost:9200
 elasticsearch.sniff = false
 elasticsearch.index_name = ramex
 elasticsearch.index.disable = false
+elasticsearch.enable_refresh_query = false
 
 # ramses_example
 host = localhost
