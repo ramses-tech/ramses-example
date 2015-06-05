@@ -1,4 +1,4 @@
-nefertari==0.3.2
+nefertari==0.3.3
 nefertari-mongodb==0.2.2
 nefertari-sqla==0.2.3
 ramses==0.2.2
