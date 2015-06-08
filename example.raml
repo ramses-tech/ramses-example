@@ -45,10 +45,53 @@ securitySchemes:
 securedBy: [x_ticket_auth]
 
 /stories:
-    securedBy: [read_only_users]
+    # securedBy: [read_only_users]
     displayName: All stories
     get:
         description: Get all stories
+        queryParameters:
+            q:
+                displayName: "Search query"
+                type: string
+                required: false
+                example: "foobar"
+        responses:
+            200:
+                body:
+                    application/json:
+                        schema: |
+                            {
+                                "id": "storiesGetSchema",
+                                "type": "object",
+                                "title": "Users response schema",
+                                "$schema": "http://json-schema.org/draft-03/schema",
+                                "properties": {
+                                    "count": {
+                                        "type": "integer",
+                                        "required": true
+                                    },
+                                    "fields": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "took": {
+                                        "type": "integer"
+                                    },
+                                    "start": {
+                                        "type": "integer",
+                                        "required": true
+                                    },
+                                    "total": {
+                                        "type": "integer",
+                                        "required": true
+                                    },
+                                    "data": {
+                                        "type": "array",
+                                        "required": true
+                                    }
+                                }
+                            }
+
     post:
         description: Create a new story
         body:
@@ -69,7 +112,7 @@ securedBy: [x_ticket_auth]
             description: Update a particular story
 
 /users:
-    securedBy: [read_only_useritem_everyone]
+    # securedBy: [read_only_useritem_everyone]
     displayName: All users
     get:
         description: Get all users
