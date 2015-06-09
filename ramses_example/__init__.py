@@ -38,7 +38,7 @@ def crypt_processor(instance, new_value):
     import cryptacular.bcrypt
     crypt = cryptacular.bcrypt.BCRYPTPasswordManager()
     if new_value and not crypt.match(new_value):
-        new_value = unicode(crypt.encode(new_value))
+        new_value = str(crypt.encode(new_value))
     return new_value
 
 
