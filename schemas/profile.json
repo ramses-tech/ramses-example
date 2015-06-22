@@ -12,7 +12,10 @@
         },
         "created_at": {
             "required": false,
-            "type": "datetime"
+            "type": "datetime",
+            "args": {
+                "default": "{{datetime.datetime.utcnow}}"
+            }
         },
         "updated_at": {
             "required": false,
