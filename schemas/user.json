@@ -20,7 +20,10 @@
         },
         "updated_at": {
             "required": false,
-            "type": "datetime"
+            "type": "datetime",
+            "args": {
+                "onupdate": "{{datetime.datetime.utcnow}}"
+            }
         },
         "profile": {
             "required": false,
