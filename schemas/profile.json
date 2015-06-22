@@ -10,6 +10,14 @@
                 "primary_key": true
             }
         },
+        "created_at": {
+            "required": false,
+            "type": "datetime"
+        },
+        "updated_at": {
+            "required": false,
+            "type": "datetime"
+        },
         "address": {
             "required": false,
             "type": "unicode_text"

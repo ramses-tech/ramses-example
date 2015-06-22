@@ -45,7 +45,6 @@ securitySchemes:
 securedBy: [x_ticket_auth]
 
 /stories:
-    securedBy: [read_only_users]
     displayName: All stories
     get:
         description: Get all stories
@@ -69,7 +68,6 @@ securedBy: [x_ticket_auth]
             description: Update a particular story
 
 /users:
-    securedBy: [read_only_useritem_everyone]
     displayName: All users
     get:
         description: Get all users
@@ -111,5 +109,5 @@ securedBy: [x_ticket_auth]
                 body:
                     application/json:
                         schema: !include schemas/profile.json
-            put:
+            patch:
                 description: Update a user's profile

@@ -16,7 +16,11 @@
             "required": false,
             "type": "datetime"
         },
-        "creation_date": {
+        "created_at": {
+            "required": false,
+            "type": "datetime"
+        },
+        "updated_at": {
             "required": false,
             "type": "datetime"
         },
