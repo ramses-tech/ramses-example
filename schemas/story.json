@@ -16,9 +16,19 @@
             "required": false,
             "type": "datetime"
         },
-        "creation_date": {
+        "created_at": {
             "required": false,
-            "type": "datetime"
+            "type": "datetime",
+            "args": {
+                "default": "{{datetime.datetime.utcnow}}"
+            }
+        },
+        "updated_at": {
+            "required": false,
+            "type": "datetime",
+            "args": {
+                "onupdate": "{{datetime.datetime.utcnow}}"
+            }
         },
         "start_date": {
             "required": false,

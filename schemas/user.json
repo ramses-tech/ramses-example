@@ -11,6 +11,20 @@
             "required": false,
             "type": "id_field"
         },
+        "created_at": {
+            "required": false,
+            "type": "datetime",
+            "args": {
+                "default": "{{datetime.datetime.utcnow}}"
+            }
+        },
+        "updated_at": {
+            "required": false,
+            "type": "datetime",
+            "args": {
+                "onupdate": "{{datetime.datetime.utcnow}}"
+            }
+        },
         "profile": {
             "required": false,
             "type": "relationship",

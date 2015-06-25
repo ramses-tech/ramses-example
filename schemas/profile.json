@@ -10,6 +10,20 @@
                 "primary_key": true
             }
         },
+        "created_at": {
+            "required": false,
+            "type": "datetime",
+            "args": {
+                "default": "{{datetime.datetime.utcnow}}"
+            }
+        },
+        "updated_at": {
+            "required": false,
+            "type": "datetime",
+            "args": {
+                "onupdate": "{{datetime.datetime.utcnow}}"
+            }
+        },
         "address": {
             "required": false,
             "type": "unicode_text"
