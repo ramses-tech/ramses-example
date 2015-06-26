@@ -56,10 +56,6 @@
                 "foreign_keys": "Story.assignee_id"
             }
         },
-        "timestamp": {
-            "required": false,
-            "type": "datetime"
-        },
         "username": {
             "required": true,
             "type": "string",

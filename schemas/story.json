@@ -12,10 +12,6 @@
                 "primary_key": true
             }
         },
-        "timestamp": {
-            "required": false,
-            "type": "datetime"
-        },
         "created_at": {
             "required": false,
             "type": "datetime",
