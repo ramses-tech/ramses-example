@@ -29,6 +29,7 @@ elasticsearch.index_name = ramex
 elasticsearch.index.disable = false
 elasticsearch.enable_refresh_query = true
 elasticsearch.enable_aggregations = true
+elasticsearch.enable_polymorphic_query = true
 
 # ramses_example
 host = localhost
