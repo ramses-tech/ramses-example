@@ -87,6 +87,8 @@ securedBy: [x_ticket_auth]
         body:
             application/json:
                 schema: !include schemas/user.json
+    patch:
+        description: Update multiple users
     head:
         description: Determine whether a given resource is available
     options:
