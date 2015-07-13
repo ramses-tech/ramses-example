@@ -7,7 +7,7 @@ nefertari.engine = nefertari_sqla
 
 ramses.auth = true
 auth_tkt_secret = verysecret
-debug = true
+enable_get_tunneling = true
 public_max_limit = 100
 
 system.user = system
