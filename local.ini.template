@@ -5,7 +5,7 @@ ramses.raml_schema = example.raml
 ; nefertari.engine = nefertari_mongodb
 nefertari.engine = nefertari_sqla
 
-ramses.auth = true
+auth = true
 auth_tkt_secret = verysecret
 enable_get_tunneling = true
 public_max_limit = 100
