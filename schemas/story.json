@@ -12,13 +12,19 @@
                 "primary_key": true
             }
         },
-        "timestamp": {
+        "created_at": {
             "required": false,
-            "type": "datetime"
+            "type": "datetime",
+            "args": {
+                "default": "{{datetime.datetime.utcnow}}"
+            }
         },
-        "creation_date": {
+        "updated_at": {
             "required": false,
-            "type": "datetime"
+            "type": "datetime",
+            "args": {
+                "onupdate": "{{datetime.datetime.utcnow}}"
+            }
         },
         "start_date": {
             "required": false,

@@ -7,7 +7,7 @@ log = logging.getLogger(__name__)
 
 
 def my_is_admin(cls, user):
-    """ Example of overriding  """
+    """ Example of overriding """
     log.info('Checking if user {} is admin'.format(user))
     return 'admin' in user.groups
 registry.add('User.is_admin', classmethod(my_is_admin))
@@ -15,7 +15,7 @@ registry.add('User.is_admin', classmethod(my_is_admin))
 
 @registry.add
 def user_self(ace, request, obj):
-    """ Give 'patch' permission to user when trying to edit itself. """
+    """ Give 'patch' permission to user when trying to edit itself """
     from pyramid.security import Allow
     user = getattr(request, 'user', None)
     if user is not None and user.username == obj.username:
@@ -27,6 +27,7 @@ def user_self(ace, request, obj):
 
 @registry.add
 def lower_strip_processor(instance, new_value):
+    """ Make :new_value: lowercase (and stripped) """
     if new_value is None:
         return new_value
     return new_value.lower().strip()
@@ -38,7 +39,7 @@ def crypt_processor(instance, new_value):
     import cryptacular.bcrypt
     crypt = cryptacular.bcrypt.BCRYPTPasswordManager()
     if new_value and not crypt.match(new_value):
-        new_value = unicode(crypt.encode(new_value))
+        new_value = str(crypt.encode(new_value))
     return new_value
 
 

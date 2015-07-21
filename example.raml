@@ -20,7 +20,7 @@ securitySchemes:
             secret: auth_tkt_secret
             hashalg: sha512
             cookie_name: ramses_auth_tkt
-            http_only: 'true'
+            http_only: true
     - read_only_users:
         description: ACL that allows authenticated users to read collection
         type: x-ACL
@@ -100,7 +100,11 @@ securedBy: [x_ticket_auth]
     patch:
         description: Update multiple stories
     delete:
-        description: delete multiple stories
+        description: Delete multiple stories
+    head:
+        description: Determine whether a given resource is available
+    options:
+        description: Retrieve the available HTTP verbs for a given resource
 
     /{id}:
         displayName: One story
@@ -109,7 +113,12 @@ securedBy: [x_ticket_auth]
         delete:
             description: Delete a particular story
         patch:
+        put:
             description: Update a particular story
+        head:
+            description: Determine whether a given resource is available
+        options:
+            description: Retrieve the available HTTP verbs for a given resource
 
 /users:
     # securedBy: [read_only_useritem_everyone]
@@ -121,12 +130,19 @@ securedBy: [x_ticket_auth]
         body:
             application/json:
                 schema: !include schemas/user.json
+    patch:
+        description: Update multiple users
+    head:
+        description: Determine whether a given resource is available
+    options:
+        description: Retrieve the available HTTP verbs for a given resource
 
     /{username}:
         displayName: One user
         get:
             description: Get a particular user
         patch:
+        put:
             description: Update a particular user
         delete:
             description: Delete a particular user
@@ -154,5 +170,5 @@ securedBy: [x_ticket_auth]
                 body:
                     application/json:
                         schema: !include schemas/profile.json
-            put:
+            patch:
                 description: Update a user's profile
