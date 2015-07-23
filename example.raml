@@ -20,7 +20,7 @@ securitySchemes:
             secret: auth_tkt_secret
             hashalg: sha512
             cookie_name: ramses_auth_tkt
-            http_only: 'true'
+            http_only: true
     - read_only_users:
         description: ACL that allows authenticated users to read collection
         type: x-ACL
