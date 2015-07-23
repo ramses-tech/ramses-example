@@ -5,7 +5,7 @@ documentation:
     - title: Home
       content: |
         Welcome to the example API.
-baseUri: http://{host}:{port}/{version}
+baseUri: http://localhost:6543/api
 version: v1
 mediaType: application/json
 protocols: [HTTP, HTTPS]
@@ -63,7 +63,7 @@ securedBy: [x_ticket_auth]
                             {
                                 "id": "storiesGetSchema",
                                 "type": "object",
-                                "title": "Users response schema",
+                                "title": "Stories response schema",
                                 "$schema": "http://json-schema.org/draft-03/schema",
                                 "properties": {
                                     "count": {
