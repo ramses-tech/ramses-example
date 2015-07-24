@@ -51,10 +51,25 @@ securedBy: [x_ticket_auth]
         description: Get all stories
         queryParameters:
             q:
-                displayName: "Search query"
+                displayName: Query
                 type: string
                 required: false
-                example: "foobar"
+                example: foobar
+                minLength: 1
+            _limit:
+                displayName: Limit
+                type: integer
+                required: false
+                minimum: 1
+            _sort:
+                displayName: Start
+                type: string
+                required: false
+                enum: ["name", "description"]
+            _count:
+                displayName: Count
+                type: boolean
+                required: false
         responses:
             200:
                 body:
