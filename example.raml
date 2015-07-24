@@ -91,6 +91,14 @@ securedBy: [x_ticket_auth]
                                     }
                                 }
                             }
+                headers:
+                    Content-Length:
+                        displayName: Content length
+                        description: Demo content length header
+                        type: integer
+                        required: true
+                        minimum: 1
+
 
     post:
         description: Create a new story
