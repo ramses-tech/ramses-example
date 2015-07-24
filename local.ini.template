@@ -30,6 +30,7 @@ elasticsearch.index.disable = false
 elasticsearch.enable_refresh_query = true
 elasticsearch.enable_aggregations = true
 elasticsearch.enable_polymorphic_query = true
+elasticsearch.acl_filtering = true
 
 # ramses_example
 host = localhost
