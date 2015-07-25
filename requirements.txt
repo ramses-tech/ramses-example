@@ -2,9 +2,14 @@ Paste==2.0.2
 pyramid==1.5.7
 waitress==0.8.9
 
-nefertari==0.4.1
-nefertari-mongodb==0.3.1
-nefertari-sqla==0.3.1
-ramses==0.3.1
+#nefertari==0.4.1
+#nefertari-mongodb==0.3.1
+#nefertari-sqla==0.3.1
+#ramses==0.3.1
+
+git+https://github.com/brandicted/nefertari.git@acls_in_db#egg=nefertari
+git+https://github.com/brandicted/nefertari-mongodb.git@acls_in_db#egg=nefertari-mongodb
+git+https://github.com/brandicted/nefertari-sqla.git@acls_in_db#egg=nefertari-sqla
+git+https://github.com/brandicted/ramses.git@acls_in_db#egg=ramses
 
 -e .
