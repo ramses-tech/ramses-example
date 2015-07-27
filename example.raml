@@ -61,6 +61,7 @@ securedBy: [x_ticket_auth]
                 type: integer
                 required: false
                 minimum: 1
+                example: 10
             _sort:
                 displayName: Start
                 type: string
@@ -107,6 +108,32 @@ securedBy: [x_ticket_auth]
                         minimum: 1
     patch:
         description: Update multiple stories
+        queryParameters:
+            _refresh_index:
+                displayName: RefreshIndex
+                type: boolean
+                required: false
+            _limit:
+                displayName: Limit
+                type: integer
+                required: true
+                example: 5
+        body:
+            application/json:
+                schema: !include schemas/story.json
+                example: !include schemas/story_body_example.json
+        responses:
+            201:
+                body:
+                    application/json:
+                        schema: !include schemas/story_item_response.json
+                headers:
+                    Content-Length:
+                        displayName: Content length
+                        description: Demo content length header
+                        type: integer
+                        required: true
+                        minimum: 1
     delete:
         description: Delete multiple stories
     head:
