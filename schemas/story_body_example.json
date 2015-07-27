@@ -1,0 +1,17 @@
+{
+    "due_date": "2015-03-07T10:00:00Z",
+    "description": "desc1",
+    "completed": false,
+    "start_date": "2015-03-04T10:00:00Z",
+    "progress": 1.0,
+    "name": "name1",
+    "signs_number": 12312313123123123,
+    "valid_date": "2015-03-04",
+    "valid_time": "14:32:00",
+    "reads": 10,
+    "rating": 9,
+    "available_for": 36000,
+    "price": 32.99,
+    "unicode_name": "name2",
+    "unicode_description": "desc2"
+}

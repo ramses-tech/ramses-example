@@ -1,0 +1,128 @@
+{
+    "type": "object",
+    "title": "Story schema",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "auth_fields": ["id", "start_date", "due_date", "name", "description", "progress"],
+    "public_fields": ["id", "start_date", "due_date", "name"],
+    "properties": {
+        "_self": {
+            "type": "string",
+            "required": true,
+            "pattern": "http(s?)://"
+        },
+        "rating": {
+            "type": "integer",
+            "required": true
+        },
+        "signs_number": {
+            "type": "integer",
+            "required": true
+        },
+        "available_for": {
+            "type": "integer",
+            "required": true
+        },
+        "updated_at": {
+            "type": ["string", "null"],
+            "required": true,
+            "format": "date-time"
+        },
+        "assignee_id": {
+            "type": ["string", "null"],
+            "required": true
+        },
+        "assignee": {
+            "type": ["string", "null"],
+            "required": true
+        },
+        "reads": {
+            "type": "integer",
+            "required": true
+        },
+        "owner": {
+            "type": ["string", "null"],
+            "required": true
+        },
+        "valid_date": {
+            "type": "string",
+            "required": true,
+            "format": "date-time"
+        },
+        "id": {
+            "type": ["integer", "string"],
+            "required": true,
+            "minimum": 1
+        },
+        "_pk": {
+            "type": "string",
+            "required": true
+        },
+        "attachment": {
+            "type": ["string", "null"],
+            "required": true
+        },
+        "progress": {
+            "type": "number",
+            "required": true
+        },
+        "price": {
+            "type": "number",
+            "required": true
+        },
+        "owner_id": {
+            "type": ["string", "null"],
+            "required": true
+        },
+        "due_date": {
+            "type": "string",
+            "required": true,
+            "format": "date-time"
+        },
+        "_type": {
+            "type": "string",
+            "required": true
+        },
+        "arbitrary_object": {
+            "type": ["object", "null"],
+            "required": true
+        },
+        "description": {
+            "type": "string",
+            "required": true
+        },
+        "valid_time": {
+            "type": "string",
+            "required": true
+        },
+        "unicode_description": {
+            "type": "string",
+            "required": true
+        },
+        "completed": {
+            "type": "boolean",
+            "required": true
+        },
+        "name": {
+            "type": "string",
+            "required": true
+        },
+        "created_at": {
+            "type": "string",
+            "required": true,
+            "format": "date-time"
+        },
+        "_version": {
+            "type": "integer",
+            "required": true
+        },
+        "start_date": {
+            "type": "string",
+            "required": true,
+            "format": "date-time"
+        },
+        "unicode_name": {
+            "type": "string",
+            "required": true
+        },
+    }
+}
