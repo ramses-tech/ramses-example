@@ -1,0 +1,33 @@
+{
+    "id": "collectionGetSchema",
+    "type": "object",
+    "title": "Collection response schema",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "properties": {
+        "explanation": {
+            "type": "string",
+            "required": true
+        },
+        "message": {
+            "type": "string",
+            "required": true
+        },
+        "request_url": {
+            "type": "string",
+            "required": true
+        },
+        "status_code": {
+            "type": "integer",
+            "required": true
+        },
+        "timestamp": {
+            "type": "string",
+            "required": true,
+            "format": "date-time"
+        },
+        "title": {
+            "type": "string",
+            "required": true
+        }
+    }
+}
