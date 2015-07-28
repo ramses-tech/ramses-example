@@ -78,7 +78,7 @@ securedBy: [x_ticket_auth]
                         schema: !include schemas/collection_response.json
                 headers:
                     Content-Length:
-                        displayName: Content length
+                        displayName: ContentLength
                         description: Demo content length header
                         type: integer
                         required: true
@@ -101,7 +101,7 @@ securedBy: [x_ticket_auth]
                         schema: !include schemas/story_item_response.json
                 headers:
                     Content-Length:
-                        displayName: Content length
+                        displayName: ContentLength
                         description: Demo content length header
                         type: integer
                         required: true
@@ -129,17 +129,63 @@ securedBy: [x_ticket_auth]
                         schema: !include schemas/collection_action_response.json
                 headers:
                     Content-Length:
-                        displayName: Content length
+                        displayName: ContentLength
                         description: Demo content length header
                         type: integer
                         required: true
                         minimum: 1
-    delete:
-        description: Delete multiple stories
     head:
         description: Determine whether a given resource is available
+        queryParameters:
+            q:
+                displayName: Query
+                type: string
+                required: false
+                example: foobar
+                minLength: 1
+            _limit:
+                displayName: Limit
+                type: integer
+                required: false
+                minimum: 1
+                example: 10
+            _sort:
+                displayName: Start
+                type: string
+                required: false
+                enum: ["name", "description"]
+            _count:
+                displayName: Count
+                type: boolean
+                required: false
+        responses:
+            200:
+                headers:
+                    Content-Length:
+                        displayName: ContentLength
+                        description: Demo content length header
+                        type: integer
+                        required: true
+                        minimum: 1
     options:
         description: Retrieve the available HTTP verbs for a given resource
+        responses:
+            200:
+                headers:
+                    Content-Length:
+                        displayName: ContentLength
+                        description: Demo content length header
+                        type: integer
+                        required: true
+                        minimum: 0
+                        maximum: 0
+                    Allow:
+                        displayName: AllowedMethods
+                        description: Allowed methods
+                        type: string
+                        required: true
+    delete:
+        description: Delete multiple stories
 
     /{id}:
         displayName: One story
@@ -167,7 +213,7 @@ securedBy: [x_ticket_auth]
                         schema: !include schemas/collection_response.json
                 headers:
                     Content-Length:
-                        displayName: Content length
+                        displayName: ContentLength
                         description: Demo content length header
                         type: integer
                         required: true
