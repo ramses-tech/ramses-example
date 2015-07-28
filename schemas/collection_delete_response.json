@@ -2,47 +2,44 @@
     "id": "collectionGetSchema",
     "type": "object",
     "title": "Collection response schema",
-    "$schema": "http://json-schema.org/draft-03/schema",
+    "$schema": "http://json-schema.org/draft-04/schema",
     "properties": {
         "timestamp": {
             "type": "string",
-            "required": true,
             "format": "date-time"
         },
         "title": {
-            "type": "string",
-            "required": true
+            "type": "string"
         },
         "status_code": {
-            "type": "integer",
-            "required": true
+            "type": "integer"
         },
         "explanation": {
-            "type": "string",
-            "required": true
+            "type": "string"
         },
         "message": {
-            "type": ["string", "null"],
-            "required": true
+            "type": ["string", "null"]
         },
         "extra": {
             "type": "object",
             "properties": {
                 "count": {
-                    "type": "integer",
-                    "required": true
+                    "type": "integer"
                 },
                 "confirmation_url": {
                     "type": "string",
-                    "pattern": "http(s?)://",
-                    "required": true
+                    "pattern": "http(s?)://"
                 },
                 "method": {
                     "type": "string",
-                    "enum": ["delete", "DELETE"],
-                    "required": true
+                    "enum": ["delete", "DELETE"]
                 }
-            }
+            },
+            "required": ["count", "confirmation_url", "method"]
         }
-    }
+    },
+    "required": [
+        "timestamp", "title", "status_code", "explanation",
+        "message", "extra"
+    ]
 }

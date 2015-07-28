@@ -2,32 +2,30 @@
     "id": "collectionGetSchema",
     "type": "object",
     "title": "Collection response schema",
-    "$schema": "http://json-schema.org/draft-03/schema",
+    "$schema": "http://json-schema.org/draft-04/schema",
     "properties": {
         "explanation": {
-            "type": "string",
-            "required": true
+            "type": "string"
         },
         "message": {
-            "type": "string",
-            "required": true
+            "type": "string"
         },
         "request_url": {
-            "type": "string",
-            "required": true
+            "type": "string"
         },
         "status_code": {
-            "type": "integer",
-            "required": true
+            "type": "integer"
         },
         "timestamp": {
             "type": "string",
-            "required": true,
             "format": "date-time"
         },
         "title": {
-            "type": "string",
-            "required": true
+            "type": "string"
         }
-    }
+    },
+    "required": [
+        "explanation", "message", "request_url", "status_code",
+        "timestamp", "title"
+    ]
 }

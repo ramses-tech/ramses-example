@@ -1,128 +1,108 @@
 {
     "type": "object",
     "title": "Story schema",
-    "$schema": "http://json-schema.org/draft-03/schema",
+    "$schema": "http://json-schema.org/draft-04/schema",
     "auth_fields": ["id", "start_date", "due_date", "name", "description", "progress"],
     "public_fields": ["id", "start_date", "due_date", "name"],
     "properties": {
         "_self": {
             "type": "string",
-            "required": true,
             "pattern": "http(s?)://"
         },
         "rating": {
-            "type": "integer",
-            "required": true
+            "type": "integer"
         },
         "signs_number": {
-            "type": "integer",
-            "required": true
+            "type": "integer"
         },
         "available_for": {
-            "type": "integer",
-            "required": true
+            "type": "integer"
         },
         "updated_at": {
             "type": ["string", "null"],
-            "required": true,
             "format": "date-time"
         },
         "assignee_id": {
-            "type": ["string", "null"],
-            "required": true
+            "type": ["string", "null"]
         },
         "assignee": {
-            "type": ["string", "null"],
-            "required": true
+            "type": ["string", "null"]
         },
         "reads": {
-            "type": "integer",
-            "required": true
+            "type": "integer"
         },
         "owner": {
-            "type": ["string", "null"],
-            "required": true
+            "type": ["string", "null"]
         },
         "valid_date": {
             "type": "string",
-            "required": true,
             "format": "date-time"
         },
         "id": {
             "type": ["integer", "string"],
-            "required": true,
             "minimum": 1
         },
         "_pk": {
-            "type": "string",
-            "required": true
+            "type": "string"
         },
         "attachment": {
-            "type": ["string", "null"],
-            "required": true
+            "type": ["string", "null"]
         },
         "progress": {
-            "type": "number",
-            "required": true
+            "type": "number"
         },
         "price": {
-            "type": "number",
-            "required": true
+            "type": "number"
         },
         "owner_id": {
-            "type": ["string", "null"],
-            "required": true
+            "type": ["string", "null"]
         },
         "due_date": {
             "type": "string",
-            "required": true,
             "format": "date-time"
         },
         "_type": {
-            "type": "string",
-            "required": true
+            "type": "string"
         },
         "arbitrary_object": {
-            "type": ["object", "null"],
-            "required": true
+            "type": ["object", "null"]
         },
         "description": {
-            "type": "string",
-            "required": true
+            "type": "string"
         },
         "valid_time": {
-            "type": "string",
-            "required": true
+            "type": "string"
         },
         "unicode_description": {
-            "type": "string",
-            "required": true
+            "type": "string"
         },
         "completed": {
-            "type": "boolean",
-            "required": true
+            "type": "boolean"
         },
         "name": {
-            "type": "string",
-            "required": true
+            "type": "string"
         },
         "created_at": {
             "type": "string",
-            "required": true,
             "format": "date-time"
         },
         "_version": {
-            "type": "integer",
-            "required": true
+            "type": "integer"
         },
         "start_date": {
             "type": "string",
-            "required": true,
             "format": "date-time"
         },
         "unicode_name": {
-            "type": "string",
-            "required": true
+            "type": "string"
         },
-    }
+    },
+    "required": [
+        "_self", "rating", "signs_number", "available_for", "updated_at",
+        "assignee_id", "assignee", "reads", "owner", "valid_date", "id",
+        "_pk", "attachment", "progress", "price", "owner_id", "due_date",
+        "_type", "arbitrary_object", "description", "valid_time",
+        "unicode_description", "completed", "name", "created_at",
+        "_version", "start_date", "unicode_name"
+    ]
 }

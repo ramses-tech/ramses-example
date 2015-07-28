@@ -2,33 +2,29 @@
     "id": "collectionGetSchema",
     "type": "object",
     "title": "Collection response schema",
-    "$schema": "http://json-schema.org/draft-03/schema",
+    "$schema": "http://json-schema.org/draft-04/schema",
     "properties": {
         "count": {
             "type": "integer",
-            "required": true,
             "minumum": 0
         },
         "fields": {
-            "type": "string",
-            "required": true
+            "type": "string"
         },
         "took": {
             "type": "integer"
         },
         "start": {
             "type": "integer",
-            "required": true,
             "minumum": 0
         },
         "total": {
             "type": "integer",
-            "required": true,
             "minumum": 0
         },
         "data": {
-            "type": "array",
-            "required": true
+            "type": "array"
         }
-    }
+    },
+    "required": ["count", "fields", "start", "total", "data"]
 }
