@@ -126,7 +126,7 @@ securedBy: [x_ticket_auth]
             200:
                 body:
                     application/json:
-                        schema: !include schemas/collection_action_response.json
+                        schema: !include schemas/collection_patch_response.json
                 headers:
                     Content-Length:
                         displayName: ContentLength
@@ -186,7 +186,31 @@ securedBy: [x_ticket_auth]
                         required: true
     delete:
         description: Delete multiple stories
-
+        queryParameters:
+            q:
+                displayName: Query
+                type: string
+                required: false
+                example: foobar
+                minLength: 1
+            _limit:
+                displayName: Limit
+                type: integer
+                required: true
+                minimum: 1
+                example: 10
+        responses:
+            200:
+                body:
+                    application/json:
+                        schema: !include schemas/collection_delete_response.json
+                headers:
+                    Content-Length:
+                        displayName: ContentLength
+                        description: Demo content length header
+                        type: integer
+                        required: true
+                        minimum: 1
     /{id}:
         displayName: One story
         get:

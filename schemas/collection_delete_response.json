@@ -1,0 +1,48 @@
+{
+    "id": "collectionGetSchema",
+    "type": "object",
+    "title": "Collection response schema",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "properties": {
+        "timestamp": {
+            "type": "string",
+            "required": true,
+            "format": "date-time"
+        },
+        "title": {
+            "type": "string",
+            "required": true
+        },
+        "status_code": {
+            "type": "integer",
+            "required": true
+        },
+        "explanation": {
+            "type": "string",
+            "required": true
+        },
+        "message": {
+            "type": ["string", "null"],
+            "required": true
+        },
+        "extra": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "required": true
+                },
+                "confirmation_url": {
+                    "type": "string",
+                    "pattern": "http(s?)://",
+                    "required": true
+                },
+                "method": {
+                    "type": "string",
+                    "enum": ["delete", "DELETE"],
+                    "required": true
+                }
+            }
+        }
+    }
+}
