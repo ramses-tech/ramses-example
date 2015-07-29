@@ -10,13 +10,13 @@
             "pattern": "http(s?)://"
         },
         "rating": {
-            "type": "integer"
+            "type": ["integer", "null"]
         },
         "signs_number": {
-            "type": "integer"
+            "type": ["integer", "null"]
         },
         "available_for": {
-            "type": "integer"
+            "type": ["integer", "null"]
         },
         "updated_at": {
             "type": ["string", "null"],
@@ -29,13 +29,13 @@
             "type": ["string", "null"]
         },
         "reads": {
-            "type": "integer"
+            "type": ["integer", "null"]
         },
         "owner": {
             "type": ["string", "null"]
         },
         "valid_date": {
-            "type": "string",
+            "type": ["string", "null"],
             "format": "date-time"
         },
         "id": {
@@ -49,16 +49,16 @@
             "type": ["string", "null"]
         },
         "progress": {
-            "type": "number"
+            "type": ["number", "null"]
         },
         "price": {
-            "type": "number"
+            "type": ["number", "null"]
         },
         "owner_id": {
             "type": ["string", "null"]
         },
         "due_date": {
-            "type": "string",
+            "type": ["string", "null"],
             "format": "date-time"
         },
         "_type": {
@@ -71,30 +71,30 @@
             "type": "string"
         },
         "valid_time": {
-            "type": "string"
+            "type": ["string", "null"]
         },
         "unicode_description": {
-            "type": "string"
+            "type": ["string", "null"]
         },
         "completed": {
-            "type": "boolean"
+            "type": ["boolean", "null"]
         },
         "name": {
             "type": "string"
         },
         "created_at": {
-            "type": "string",
+            "type": ["string", "null"],
             "format": "date-time"
         },
         "_version": {
             "type": "integer"
         },
         "start_date": {
-            "type": "string",
+            "type": ["string", "null"],
             "format": "date-time"
         },
         "unicode_name": {
-            "type": "string"
+            "type": ["string", "null"]
         },
     },
     "required": [

@@ -1,5 +1,5 @@
 {
-    "id": "collectionPatchResponseSchema",
+    "id": "itemDeleteResponseSchema",
     "type": "object",
     "title": "Collection response schema",
     "$schema": "http://json-schema.org/draft-04/schema",
@@ -8,7 +8,7 @@
             "type": "string"
         },
         "message": {
-            "type": "string"
+            "type": ["string", "null"]
         },
         "request_url": {
             "type": "string"
@@ -25,7 +25,7 @@
         }
     },
     "required": [
-        "explanation", "message", "request_url", "status_code",
-        "timestamp", "title"
+        "timestamp", "title", "status_code", "explanation",
+        "message"
     ]
 }
