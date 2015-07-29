@@ -1,0 +1,10 @@
+{
+    "username": "user12",
+    "password": "123456",
+    "email": "user12@domain.com",
+    "first_name": "John",
+    "last_name": "Doe",
+    "last_login": "2015-03-04T14:32:00Z",
+    "groups": ["user"],
+    "settings": {"foo": "bar"}
+}

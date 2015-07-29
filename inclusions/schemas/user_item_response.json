@@ -1,0 +1,75 @@
+{
+    "type": "object",
+    "title": "Story schema",
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "properties": {
+        "_self": {
+            "type": "string",
+            "pattern": "http(s?)://"
+        },
+        "_pk": {
+            "type": "string"
+        },
+        "username": {
+            "type": "string"
+        },
+        "password": {
+            "type": "string"
+        },
+        "email": {
+            "type": "string",
+            "format": "email"
+        },
+        "status": {
+            "type": ["string", "null"]
+        },
+        "id": {
+            "type": ["string", "integer", "null"]
+        },
+        "first_name": {
+            "type": ["string", "null"]
+        },
+        "last_name": {
+            "type": ["string", "null"]
+        },
+        "assigned_stories": {
+            "type": ["array", "null"]
+        },
+        "stories": {
+            "type": ["array", "null"]
+        },
+        "settings": {
+            "type": ["object", "null"]
+        },
+        "created_at": {
+            "type": ["string", "null"],
+            "format": "date-time"
+        },
+        "last_login": {
+            "type": ["string", "null"],
+            "format": "date-time"
+        },
+        "_version": {
+            "type": "integer"
+        },
+        "_type": {
+            "type": "string"
+        },
+        "updated_at": {
+            "type": ["string", "null"],
+            "format": "date-time"
+        },
+        "profile": {
+            "type": ["object", "null"]
+        },
+        "groups": {
+            "type": ["array", "null"],
+        }
+    },
+    "required": [
+        "_self", "_pk", "username", "password", "email", "status", "id",
+        "first_name", "last_name", "assigned_stories", "stories",
+        "settings", "created_at", "last_login", "_version", "_type",
+        "updated_at", "profile", "groups"
+    ]
+}

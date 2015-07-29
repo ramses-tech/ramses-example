@@ -1,0 +1,45 @@
+{
+    "type": "object",
+    "title": "Story schema",
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "properties": {
+        "_self": {
+            "type": "string",
+            "pattern": "http(s?)://"
+        },
+        "id": {
+            "type": ["string", "integer"],
+            "minimum": 1
+        },
+        "_pk": {
+            "type": "string"
+        },
+        "_type": {
+            "type": "string"
+        },
+        "user_id": {
+            "type": "string"
+        },
+        "user": {
+            "type": "string"
+        },
+        "address": {
+            "type": "string"
+        },
+        "created_at": {
+            "type": ["string", "null"],
+            "format": "date-time"
+        },
+        "_version": {
+            "type": "integer"
+        },
+        "updated_at": {
+            "type": ["string", "null"],
+            "format": "date-time"
+        }
+    },
+    "required": [
+        "_self", "id", "_pk", "_type", "user_id", "user", "address",
+        "created_at", "_version", "updated_at"
+    ]
+}

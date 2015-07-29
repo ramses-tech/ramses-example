@@ -91,7 +91,7 @@ securedBy: [x_ticket_auth]
         displayName: One story
         uriParameters:
            id:
-               displayName: User ID
+               displayName: StoryID
                type: integer
         get:
             description: Get a particular story
@@ -145,11 +145,13 @@ securedBy: [x_ticket_auth]
         options:
             description: Retrieve the available HTTP verbs for a given resource
             responses: !include inclusions/yaml/options_responses.yaml
+
 /users:
     securedBy: [read_only_useritem_everyone]
     displayName: All users
     get:
         description: Get all users
+        queryParameters: !include inclusions/yaml/collection_query_params.yaml
         responses:
             200:
                 body:
@@ -158,48 +160,172 @@ securedBy: [x_ticket_auth]
                 headers: !include inclusions/yaml/demo_headers.yaml
     post:
         description: Create a new user
+        queryParameters:
+            _refresh_index: !include inclusions/yaml/refresh_index_param.yaml
         body:
             application/json:
                 schema: !include inclusions/schemas/user.json
+                example: !include inclusions/examples/user_body_example.json
+        responses:
+            201:
+                body:
+                    application/json:
+                        schema: !include inclusions/schemas/user_item_response.json
+                headers: !include inclusions/yaml/demo_headers.yaml
     patch:
         description: Update multiple users
+        queryParameters:
+            _refresh_index: !include inclusions/yaml/refresh_index_param.yaml
+            _limit:
+                displayName: Limit
+                type: integer
+                required: true
+                example: 5
+        body:
+            application/json:
+                example: !include inclusions/examples/user_body_example.json
+        responses:
+            200:
+                body:
+                    application/json:
+                        schema: !include inclusions/schemas/collection_patch_response.json
+                headers: !include inclusions/yaml/demo_headers.yaml
     head:
         description: Determine whether a given resource is available
+        queryParameters: !include inclusions/yaml/collection_query_params.yaml
+        responses:
+            200:
+                headers: !include inclusions/yaml/demo_headers.yaml
     options:
         description: Retrieve the available HTTP verbs for a given resource
+        responses: !include inclusions/yaml/options_responses.yaml
 
     /{username}:
         displayName: One user
+        uriParameters:
+           id:
+               displayName: Username
+               type: string
         get:
             description: Get a particular user
+            responses:
+                200:
+                    body:
+                        application/json:
+                            schema: !include inclusions/schemas/user_item_response.json
+                    headers: !include inclusions/yaml/demo_headers.yaml
         patch:
-        put:
             description: Update a particular user
+            queryParameters:
+                _refresh_index: !include inclusions/yaml/refresh_index_param.yaml
+            body:
+                application/json:
+                    example: !include inclusions/examples/user_body_example.json
+            responses:
+                200:
+                    body:
+                        application/json:
+                            schema: !include inclusions/schemas/user_item_response.json
+                    headers: !include inclusions/yaml/demo_headers.yaml
+        put:
+            description: Replace a particular user
+            queryParameters:
+                _refresh_index: !include inclusions/yaml/refresh_index_param.yaml
+            body:
+                application/json:
+                    example: !include inclusions/examples/user_body_example.json
+            responses:
+                200:
+                    body:
+                        application/json:
+                            schema: !include inclusions/schemas/user_item_response.json
+                    headers: !include inclusions/yaml/demo_headers.yaml
         delete:
             description: Delete a particular user
-
+            queryParameters:
+                _refresh_index: !include inclusions/yaml/refresh_index_param.yaml
+            responses:
+                200:
+                    body:
+                        application/json:
+                            schema: !include inclusions/schemas/item_delete_response.json
+                    headers: !include inclusions/yaml/demo_headers.yaml
         /settings:
             displayName: User settings
             get:
                 description: Get all settings of a particular user
+                responses:
+                    200:
+                        body:
+                            application/json:
+                                schema: !include inclusions/schemas/settings_response.json
+                        headers: !include inclusions/yaml/demo_headers.yaml
             post:
                 description: Change a user's settings
-
+                queryParameters:
+                    _refresh_index: !include inclusions/yaml/refresh_index_param.yaml
+                body:
+                    application/json:
+                        example: !include inclusions/examples/settings_body_example.json
+                responses:
+                    201:
+                        body:
+                            application/json:
+                                schema: !include inclusions/schemas/settings_response.json
+                        headers: !include inclusions/yaml/demo_headers.yaml
         /groups:
             displayName: User groups
             get:
                 description: Get all groups of a particular user
+                responses:
+                    200:
+                        headers: !include inclusions/yaml/demo_headers.yaml
             post:
                 description: Change a user's groups
+                queryParameters:
+                    _refresh_index: !include inclusions/yaml/refresh_index_param.yaml
+                body:
+                    application/json:
+                        example: !include inclusions/examples/groups_body_example.json
+                responses:
+                    201:
+                        headers: !include inclusions/yaml/demo_headers.yaml
 
         /profile:
             displayName: User profile
             get:
                 description: Get a user's profile
+                responses:
+                    200:
+                        body:
+                            application/json:
+                                schema: !include inclusions/schemas/profile_item_response.json
+                        headers: !include inclusions/yaml/demo_headers.yaml
             post:
                 description: Create a user's profile
+                queryParameters:
+                    _refresh_index: !include inclusions/yaml/refresh_index_param.yaml
                 body:
                     application/json:
                         schema: !include inclusions/schemas/profile.json
+                example: !include inclusions/examples/profile_body_example.json
+                responses:
+                    201:
+                        body:
+                            application/json:
+                                schema: !include inclusions/schemas/profile_item_response.json
+                        headers: !include inclusions/yaml/demo_headers.yaml
+
             patch:
                 description: Update a user's profile
+                queryParameters:
+                    _refresh_index: !include inclusions/yaml/refresh_index_param.yaml
+                body:
+                    application/json:
+                        example: !include inclusions/examples/profile_body_example.json
+                responses:
+                    200:
+                        body:
+                            application/json:
+                                schema: !include inclusions/schemas/profile_item_response.json
+                        headers: !include inclusions/yaml/demo_headers.yaml

@@ -2,8 +2,6 @@
     "type": "object",
     "title": "Story schema",
     "$schema": "http://json-schema.org/draft-04/schema",
-    "auth_fields": ["id", "start_date", "due_date", "name", "description", "progress"],
-    "public_fields": ["id", "start_date", "due_date", "name"],
     "properties": {
         "_self": {
             "type": "string",
@@ -39,7 +37,7 @@
             "format": "date-time"
         },
         "id": {
-            "type": ["integer", "string"],
+            "type": ["string", "integer"],
             "minimum": 1
         },
         "_pk": {

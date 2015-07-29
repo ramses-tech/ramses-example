@@ -10,11 +10,12 @@ _limit:
     required: false
     minimum: 1
     example: 10
-_sort:
+_start:
     displayName: Start
-    type: string
+    type: integer
     required: false
-    enum: ["name", "description"]
+    minimum: 1
+    example: 12
 _count:
     displayName: Count
     type: boolean
