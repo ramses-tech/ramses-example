@@ -9,39 +9,7 @@ baseUri: http://localhost:6543/api
 version: v1
 mediaType: application/json
 protocols: [HTTP, HTTPS]
-securitySchemes:
-    - x_token_auth:
-        description: Authorization header token policy
-        type: x-ApiKey
-    - x_ticket_auth:
-        description: Standard Pyramid Auth Ticket policy
-        type: x-Ticket
-        settings:
-            secret: auth_tkt_secret
-            hashalg: sha512
-            cookie_name: ramses_auth_tkt
-            http_only: true
-    - read_only_users:
-        description: ACL that allows authenticated users to read collection
-        type: x-ACL
-        settings:
-            collection: |
-                allow admin all
-                allow authenticated get
-            item: |
-                allow admin all
-                allow authenticated get
-    - read_only_useritem_everyone:
-        description: ACL that allows everyone to read item, authenticated users to read collection
-        type: x-ACL
-        settings:
-            collection: |
-                allow admin all
-                allow authenticated get
-            item: |
-                allow admin all
-                allow everyone get
-                allow {{user_self}} patch
+securitySchemes: !include inclusions/yaml/security_schemes.yaml
 securedBy: [x_ticket_auth]
 
 /stories:
@@ -49,70 +17,31 @@ securedBy: [x_ticket_auth]
     displayName: All stories
     get:
         description: Get all stories
-        queryParameters:
-            q:
-                displayName: Query
-                type: string
-                required: false
-                example: foobar
-                minLength: 1
-            _limit:
-                displayName: Limit
-                type: integer
-                required: false
-                minimum: 1
-                example: 10
-            _sort:
-                displayName: Start
-                type: string
-                required: false
-                enum: ["name", "description"]
-            _count:
-                displayName: Count
-                type: boolean
-                required: false
+        queryParameters: !include inclusions/yaml/collection_query_params.yaml
         responses:
             200:
                 body:
                     application/json:
-                        schema: !include schemas/collection_response.json
-                headers:
-                    Content-Length:
-                        displayName: ContentLength
-                        description: Demo content length header
-                        type: integer
-                        required: true
-                        minimum: 1
+                        schema: !include inclusions/schemas/collection_response.json
+                headers: !include inclusions/yaml/demo_headers.yaml
     post:
         description: Create a new story
         queryParameters:
-            _refresh_index:
-                displayName: RefreshIndex
-                type: boolean
-                required: false
+            _refresh_index: !include inclusions/yaml/refresh_index_param.yaml
         body:
             application/json:
-                schema: !include schemas/story.json
-                example: !include examples/story_body_example.json
+                schema: !include inclusions/schemas/story.json
+                example: !include inclusions/examples/story_body_example.json
         responses:
             201:
                 body:
                     application/json:
-                        schema: !include schemas/story_item_response.json
-                headers:
-                    Content-Length:
-                        displayName: ContentLength
-                        description: Demo content length header
-                        type: integer
-                        required: true
-                        minimum: 1
+                        schema: !include inclusions/schemas/story_item_response.json
+                headers: !include inclusions/yaml/demo_headers.yaml
     patch:
         description: Update multiple stories
         queryParameters:
-            _refresh_index:
-                displayName: RefreshIndex
-                type: boolean
-                required: false
+            _refresh_index: !include inclusions/yaml/refresh_index_param.yaml
             _limit:
                 displayName: Limit
                 type: integer
@@ -120,69 +49,22 @@ securedBy: [x_ticket_auth]
                 example: 5
         body:
             application/json:
-                example: !include examples/story_body_example.json
+                example: !include inclusions/examples/story_body_example.json
         responses:
             200:
                 body:
                     application/json:
-                        schema: !include schemas/collection_patch_response.json
-                headers:
-                    Content-Length:
-                        displayName: ContentLength
-                        description: Demo content length header
-                        type: integer
-                        required: true
-                        minimum: 1
+                        schema: !include inclusions/schemas/collection_patch_response.json
+                headers: !include inclusions/yaml/demo_headers.yaml
     head:
         description: Determine whether a given resource is available
-        queryParameters:
-            q:
-                displayName: Query
-                type: string
-                required: false
-                example: foobar
-                minLength: 1
-            _limit:
-                displayName: Limit
-                type: integer
-                required: false
-                minimum: 1
-                example: 10
-            _sort:
-                displayName: Start
-                type: string
-                required: false
-                enum: ["name", "description"]
-            _count:
-                displayName: Count
-                type: boolean
-                required: false
+        queryParameters: !include inclusions/yaml/collection_query_params.yaml
         responses:
             200:
-                headers:
-                    Content-Length:
-                        displayName: ContentLength
-                        description: Demo content length header
-                        type: integer
-                        required: true
-                        minimum: 1
+                headers: !include inclusions/yaml/demo_headers.yaml
     options:
         description: Retrieve the available HTTP verbs for a given resource
-        responses:
-            200:
-                headers:
-                    Content-Length:
-                        displayName: ContentLength
-                        description: Demo content length header
-                        type: integer
-                        required: true
-                        minimum: 0
-                        maximum: 0
-                    Allow:
-                        displayName: AllowedMethods
-                        description: Allowed methods
-                        type: string
-                        required: true
+        responses: !include inclusions/yaml/options_responses.yaml
     delete:
         description: Delete multiple stories
         queryParameters:
@@ -198,22 +80,13 @@ securedBy: [x_ticket_auth]
                 required: true
                 minimum: 1
                 example: 10
-            _refresh_index:
-                displayName: RefreshIndex
-                type: boolean
-                required: false
+            _refresh_index: !include inclusions/yaml/refresh_index_param.yaml
         responses:
             200:
                 body:
                     application/json:
-                        schema: !include schemas/collection_delete_response.json
-                headers:
-                    Content-Length:
-                        displayName: ContentLength
-                        description: Demo content length header
-                        type: integer
-                        required: true
-                        minimum: 1
+                        schema: !include inclusions/schemas/collection_delete_response.json
+                headers: !include inclusions/yaml/demo_headers.yaml
     /{id}:
         displayName: One story
         uriParameters:
@@ -226,105 +99,52 @@ securedBy: [x_ticket_auth]
                 200:
                     body:
                         application/json:
-                            schema: !include schemas/story_item_response.json
-                    headers:
-                        Content-Length:
-                            displayName: ContentLength
-                            description: Demo content length header
-                            type: integer
-                            required: true
-                            minimum: 1
+                            schema: !include inclusions/schemas/story_item_response.json
+                    headers: !include inclusions/yaml/demo_headers.yaml
         delete:
             description: Delete a particular story
             queryParameters:
-                _refresh_index:
-                    displayName: RefreshIndex
-                    type: boolean
-                    required: false
+                _refresh_index: !include inclusions/yaml/refresh_index_param.yaml
             responses:
                 200:
                     body:
                         application/json:
-                            schema: !include schemas/item_delete_response.json
-                    headers:
-                        Content-Length:
-                            displayName: ContentLength
-                            description: Demo content length header
-                            type: integer
-                            required: true
-                            minimum: 1
+                            schema: !include inclusions/schemas/item_delete_response.json
+                    headers: !include inclusions/yaml/demo_headers.yaml
         patch:
             description: Update a particular story
             queryParameters:
-                _refresh_index:
-                    displayName: RefreshIndex
-                    type: boolean
-                    required: false
+                _refresh_index: !include inclusions/yaml/refresh_index_param.yaml
             body:
                 application/json:
-                    example: !include examples/story_body_example.json
+                    example: !include inclusions/examples/story_body_example.json
             responses:
                 200:
                     body:
                         application/json:
-                            schema: !include schemas/story_item_response.json
-                    headers:
-                        Content-Length:
-                            displayName: ContentLength
-                            description: Demo content length header
-                            type: integer
-                            required: true
-                            minimum: 1
+                            schema: !include inclusions/schemas/story_item_response.json
+                    headers: !include inclusions/yaml/demo_headers.yaml
         put:
             description: Replace a particular story
             queryParameters:
-                _refresh_index:
-                    displayName: RefreshIndex
-                    type: boolean
-                    required: false
+                _refresh_index: !include inclusions/yaml/refresh_index_param.yaml
             body:
                 application/json:
-                    example: !include examples/story_body_example.json
+                    example: !include inclusions/examples/story_body_example.json
             responses:
                 200:
                     body:
                         application/json:
-                            schema: !include schemas/story_item_response.json
-                    headers:
-                        Content-Length:
-                            displayName: ContentLength
-                            description: Demo content length header
-                            type: integer
-                            required: true
-                            minimum: 1
+                            schema: !include inclusions/schemas/story_item_response.json
+                    headers: !include inclusions/yaml/demo_headers.yaml
         head:
             description: Determine whether a given resource is available
             responses:
                 200:
-                    headers:
-                        Content-Length:
-                            displayName: ContentLength
-                            description: Demo content length header
-                            type: integer
-                            required: true
-                            minimum: 1
+                    headers: !include inclusions/yaml/demo_headers.yaml
         options:
             description: Retrieve the available HTTP verbs for a given resource
-            responses:
-                200:
-                    headers:
-                        Content-Length:
-                            displayName: ContentLength
-                            description: Demo content length header
-                            type: integer
-                            required: true
-                            minimum: 0
-                            maximum: 0
-                        Allow:
-                            displayName: AllowedMethods
-                            description: Allowed methods
-                            type: string
-                            required: true
+            responses: !include inclusions/yaml/options_responses.yaml
 /users:
     securedBy: [read_only_useritem_everyone]
     displayName: All users
@@ -334,19 +154,13 @@ securedBy: [x_ticket_auth]
             200:
                 body:
                     application/json:
-                        schema: !include schemas/collection_response.json
-                headers:
-                    Content-Length:
-                        displayName: ContentLength
-                        description: Demo content length header
-                        type: integer
-                        required: true
-                        minimum: 1
+                        schema: !include inclusions/schemas/collection_response.json
+                headers: !include inclusions/yaml/demo_headers.yaml
     post:
         description: Create a new user
         body:
             application/json:
-                schema: !include schemas/user.json
+                schema: !include inclusions/schemas/user.json
     patch:
         description: Update multiple users
     head:
@@ -386,6 +200,6 @@ securedBy: [x_ticket_auth]
                 description: Create a user's profile
                 body:
                     application/json:
-                        schema: !include schemas/profile.json
+                        schema: !include inclusions/schemas/profile.json
             patch:
                 description: Update a user's profile
