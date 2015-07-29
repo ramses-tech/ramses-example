@@ -213,6 +213,11 @@ securedBy: [x_ticket_auth]
                         minimum: 1
     /{id}:
         displayName: One story
+        uriParameters:
+           id:
+               displayName: User ID
+               type: integer
+               example: 1
         get:
             description: Get a particular story
             responses:
