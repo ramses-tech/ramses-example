@@ -20,7 +20,6 @@ def user_self(ace, request, obj):
     user = getattr(request, 'user', None)
     if user is not None and user.username == obj.username:
         return [
-            (Allow, str(user.id), 'patch'),
             (Allow, str(user.username), 'patch'),
         ]
 
