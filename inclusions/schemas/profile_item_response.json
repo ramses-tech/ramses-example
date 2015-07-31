@@ -39,7 +39,7 @@
         }
     },
     "required": [
-        "_self", "id", "_pk", "_type", "user_id", "user", "address",
+        "_self", "id", "_pk", "_type", "user", "address",
         "created_at", "_version", "updated_at"
     ]
 }

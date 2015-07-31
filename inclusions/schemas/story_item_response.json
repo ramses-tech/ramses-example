@@ -97,8 +97,8 @@
     },
     "required": [
         "_self", "rating", "signs_number", "available_for", "updated_at",
-        "assignee_id", "assignee", "reads", "owner", "valid_date", "id",
-        "_pk", "attachment", "progress", "price", "owner_id", "due_date",
+        "assignee", "reads", "owner", "valid_date", "id",
+        "_pk", "attachment", "progress", "price", "due_date",
         "_type", "arbitrary_object", "description", "valid_time",
         "unicode_description", "completed", "name", "created_at",
         "_version", "start_date", "unicode_name"
