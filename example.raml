@@ -130,6 +130,7 @@ securedBy: [x_ticket_auth]
                 _refresh_index: !include inclusions/yaml/refresh_index_param.yaml
             body:
                 application/json:
+                    schema: !include inclusions/schemas/story.json
                     example: !include inclusions/examples/story_body_example.json
             responses:
                 200:
@@ -233,6 +234,7 @@ securedBy: [x_ticket_auth]
                 _refresh_index: !include inclusions/yaml/refresh_index_param.yaml
             body:
                 application/json:
+                    schema: !include inclusions/schemas/user.json
                     example: !include inclusions/examples/user_body_example.json
             responses:
                 200:
