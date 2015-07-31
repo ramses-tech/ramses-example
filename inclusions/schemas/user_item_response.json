@@ -23,9 +23,6 @@
         "status": {
             "type": ["string", "null"]
         },
-        "id": {
-            "type": ["string", "integer", "null"]
-        },
         "first_name": {
             "type": ["string", "null"]
         },
@@ -67,7 +64,7 @@
         }
     },
     "required": [
-        "_self", "_pk", "username", "password", "email", "status", "id",
+        "_self", "_pk", "username", "password", "email", "status",
         "first_name", "last_name", "assigned_stories", "stories",
         "settings", "created_at", "last_login", "_version", "_type",
         "updated_at", "profile", "groups"
