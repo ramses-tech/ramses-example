@@ -39,7 +39,8 @@
             "type": "string"
         },
         "foo": {
-            "type": "string"
+            "type": "string",
+            "enum": ["one", "two"]
         },
         "description": {
             "type": "string"
