@@ -2,127 +2,170 @@
     "type": "object",
     "title": "Story schema",
     "$schema": "http://json-schema.org/draft-03/schema",
-    "auth_fields": ["id", "start_date", "due_date", "name", "description", "progress"],
-    "public_fields": ["id", "start_date", "due_date", "name"],
+    "_auth_fields": ["id", "start_date", "due_date", "name", "description", "progress"],
+    "_public_fields": ["id", "start_date", "due_date", "name"],
+    "required": ["name", "description"],
     "properties": {
         "id": {
-            "required": false,
-            "type": "id_field",
-            "args": {
-                "primary_key": true
+            "type": ["integer", "string"],
+            "_db_settings": {
+                "_type": "id_field",
+                "_primary_key": true
             }
         },
         "created_at": {
-            "required": false,
-            "type": "datetime",
-            "args": {
-                "default": "{{datetime.datetime.utcnow}}"
+            "type": ["string", "null"],
+            "format": "date-time",
+            "_db_settings": {
+                "_type": "datetime",
+                "_default": "{{datetime.datetime.utcnow}}"
             }
         },
         "updated_at": {
-            "required": false,
-            "type": "datetime",
-            "args": {
-                "onupdate": "{{datetime.datetime.utcnow}}"
+            "type": ["string", "null"],
+            "format": "date-time",
+            "_db_settings": {
+                "_type": "datetime",
+                "_onupdate": "{{datetime.datetime.utcnow}}"
             }
         },
         "start_date": {
-            "required": false,
-            "type": "datetime"
+            "type": ["string", "null"],
+            "format": "date-time",
+            "_db_settings": {
+                "_type": "datetime"
+            }
         },
         "due_date": {
-            "required": false,
-            "type": "datetime"
+            "type": ["string", "null"],
+            "format": "date-time",
+            "_db_settings": {
+                "_type": "datetime"
+            }
         },
         "name": {
-            "required": true,
-            "type": "string"
+            "type": "string",
+            "_db_settings": {
+                "_required": true,
+                "_type": "string"
+            }
         },
         "description": {
-            "required": true,
-            "type": "text"
+            "type": "string",
+            "_db_settings": {
+                "_required": true,
+                "_type": "text"
+            }
         },
         "progress": {
-            "required": false,
-            "type": "float",
-            "args": {
-                "default": 0
+            "type": ["number", "null"],
+            "_db_settings": {
+                "_type": "float",
+                "_default": 0
             }
         },
         "completed": {
-            "required": false,
-            "type": "boolean",
-            "args": {
-                "default": false
+            "type": ["boolean", "null"],
+            "default": false,
+            "_db_settings": {
+                "_type": "boolean",
+                "_default": false
             }
         },
         "owner_id": {
-            "required": false,
-            "type": "foreign_key",
-            "args": {
-                "ref_document": "User",
-                "ref_column": "user.username",
-                "ref_column_type": "string"
+            "type": ["string", "null"],
+            "_db_settings": {
+                "_type": "foreign_key",
+                "_ref_document": "User",
+                "_ref_column": "user.username",
+                "_ref_column_type": "string"
             }
         },
         "assignee_id": {
-            "required": false,
-            "type": "foreign_key",
-            "args": {
-                "ref_document": "User",
-                "ref_column": "user.username",
-                "ref_column_type": "string"
+            "type": ["string", "null"],
+            "_db_settings": {
+                "_type": "foreign_key",
+                "_ref_document": "User",
+                "_ref_column": "user.username",
+                "_ref_column_type": "string"
             }
         },
         "signs_number": {
-            "required": false,
-            "type": "big_integer"
+            "type": ["integer", "null"],
+            "_db_settings": {
+                "_type": "big_integer"
+            }
         },
         "valid_date": {
-            "required": false,
-            "type": "date"
+            "type": ["string", "null"],
+            "pattern": "\d{4}-\d{2}-\d{2}",
+            "_db_settings": {
+                "_type": "date"
+            }
         },
         "valid_time": {
-            "required": false,
-            "type": "time"
+            "type": ["string", "null"],
+            "pattern": "\d{2}:\d{2}:\d{2}",
+            "_db_settings": {
+                "_type": "time"
+            }
         },
         "reads": {
-            "required": false,
-            "type": "integer",
-            "args": {
-                "default": 0
+            "type": ["integer", "null"],
+            "default": 0,
+            "_db_settings": {
+                "_type": "integer",
+                "_default": 0
             }
         },
         "rating": {
-            "required": false,
-            "type": "small_integer"
+            "type": ["integer", "null"],
+            "_db_settings": {
+                "_type": "small_integer"
+            }
         },
         "available_for": {
-            "required": false,
-            "type": "interval"
+            "type": ["integer", "null"],
+            "_db_settings": {
+                "_type": "interval"
+            }
         },
         "attachment": {
-            "required": false,
-            "type": "file"
+            "type": ["string", "null"],
+            "_db_settings": {
+                "_type": "file"
+            }
         },
         "price": {
-            "required": false,
-            "type": "decimal",
-            "args": {
-                "scale": 10
+            "type": ["number", "null"],
+            "_db_settings": {
+                "_type": "decimal",
+                "_scale": 10
             }
         },
         "arbitrary_object": {
-            "required": false,
-            "type": "pickle"
+            "type": ["object", "null"],
+            "_db_settings": {
+                "_type": "pickle"
+            }
         },
         "unicode_name": {
-            "required": false,
-            "type": "unicode"
+            "type": ["string", "null"],
+            "_db_settings": {
+                "_type": "unicode"
+            }
         },
         "unicode_description": {
-            "required": false,
-            "type": "unicode_text"
+            "type": ["string", "null"],
+            "_db_settings": {
+                "_type": "unicode_text"
+            }
+        },
+        "user": {
+            "type": ["string", "null"]
+        },
+        "assignee": {
+            "type": ["string", "null"]
         }
     }
 }
