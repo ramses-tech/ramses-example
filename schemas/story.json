@@ -98,14 +98,14 @@
         },
         "valid_date": {
             "type": ["string", "null"],
-            "pattern": "\d{4}-\d{2}-\d{2}",
+            "pattern": "\\d{4}-\\d{2}-\\d{2}",
             "_db_settings": {
                 "_type": "date"
             }
         },
         "valid_time": {
             "type": ["string", "null"],
-            "pattern": "\d{2}:\d{2}:\d{2}",
+            "pattern": "\\d{2}:\\d{2}:\\d{2}",
             "_db_settings": {
                 "_type": "time"
             }
