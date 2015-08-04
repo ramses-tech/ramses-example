@@ -12,25 +12,25 @@
             "type": ["string", "null"],
             "format": "date-time",
             "_db_settings": {
-                "_type": "datetime",
-                "_default": "{{datetime.datetime.utcnow}}"
+                "type": "datetime",
+                "default": "{{datetime.datetime.utcnow}}"
             }
         },
         "updated_at": {
             "type": ["string", "null"],
             "format": "date-time",
             "_db_settings": {
-                "_type": "datetime",
-                "_onupdate": "{{datetime.datetime.utcnow}}"
+                "type": "datetime",
+                "onupdate": "{{datetime.datetime.utcnow}}"
             }
         },
         "profile": {
             "type": ["integer", "string"],
             "_db_settings": {
-                "_type": "relationship",
-                "_document": "Profile",
-                "_backref_name": "user",
-                "_uselist": false
+                "type": "relationship",
+                "document": "Profile",
+                "backref_name": "user",
+                "uselist": false
             }
         },
         "stories": {
@@ -42,12 +42,12 @@
                 ]
             },
             "_db_settings": {
-                "_type": "relationship",
-                "_document": "Story",
-                "_ondelete": "NULLIFY",
-                "_backref_name": "owner",
-                "_backref_ondelete": "NULLIFY",
-                "_foreign_keys": "Story.owner_id"
+                "type": "relationship",
+                "document": "Story",
+                "ondelete": "NULLIFY",
+                "backref_name": "owner",
+                "backref_ondelete": "NULLIFY",
+                "foreign_keys": "Story.owner_id"
             }
         },
         "assigned_stories": {
@@ -59,12 +59,12 @@
                 ]
             },
             "_db_settings": {
-                "_type": "relationship",
-                "_document": "Story",
-                "_ondelete": "NULLIFY",
-                "_backref_name": "assignee",
-                "_backref_ondelete": "NULLIFY",
-                "_foreign_keys": "Story.assignee_id"
+                "type": "relationship",
+                "document": "Story",
+                "ondelete": "NULLIFY",
+                "backref_name": "assignee",
+                "backref_ondelete": "NULLIFY",
+                "foreign_keys": "Story.assignee_id"
             }
         },
         "username": {
@@ -72,33 +72,33 @@
             "minLength": 1,
             "maxLength": 50,
             "_db_settings": {
-                "_type": "string",
-                "_required": true,
-                "_min_length": 1,
-                "_max_length": 50,
-                "_unique": true,
-                "_primary_key": true,
-                "_before_validation": ["lower_strip_processor"]
+                "type": "string",
+                "required": true,
+                "min_length": 1,
+                "max_length": 50,
+                "unique": true,
+                "primary_key": true,
+                "before_validation": ["lower_strip_processor"]
             }
         },
         "email": {
             "type": "string",
             "format": "email",
             "_db_settings": {
-                "_type": "string",
-                "_required": true,
-                "_unique": true,
-                "_before_validation": ["lower_strip_processor"]
+                "type": "string",
+                "required": true,
+                "unique": true,
+                "before_validation": ["lower_strip_processor"]
             }
         },
         "password": {
             "type": "string",
             "minLength": 3,
             "_db_settings": {
-                "_type": "string",
-                "_required": true,
-                "_min_length": 3,
-                "_after_validation": ["crypt_processor"]
+                "type": "string",
+                "required": true,
+                "min_length": 3,
+                "after_validation": ["crypt_processor"]
             }
         },
         "first_name": {
@@ -106,9 +106,9 @@
             "maxLength": 50,
             "default": "",
             "_db_settings": {
-                "_type": "string",
-                "_max_length": 50,
-                "_default": ""
+                "type": "string",
+                "max_length": 50,
+                "default": ""
             }
         },
         "last_name": {
@@ -116,16 +116,16 @@
             "maxLength": 50,
             "default": "",
             "_db_settings": {
-                "_type": "string",
-                "_max_length": 50,
-                "_default": ""
+                "type": "string",
+                "max_length": 50,
+                "default": ""
             }
         },
         "last_login": {
             "type": ["string", "null"],
             "format": "date-time",
             "_db_settings": {
-                "_type": "datetime"
+                "type": "datetime"
             }
         },
         "groups": {
@@ -136,10 +136,10 @@
             },
             "default": ["user"],
             "_db_settings": {
-                "_type": "list",
-                "_choices": ["admin", "user"],
-                "_default": ["user"],
-                "_item_type": "string"
+                "type": "list",
+                "choices": ["admin", "user"],
+                "default": ["user"],
+                "item_type": "string"
             }
         },
         "status": {
@@ -147,15 +147,15 @@
             "enum": ["active", "inactive", "blocked"],
             "default": "active",
             "_db_settings": {
-                "_type": "choice",
-                "_choices": ["active", "inactive", "blocked"],
-                "_default": "active"
+                "type": "choice",
+                "choices": ["active", "inactive", "blocked"],
+                "default": "active"
             }
         },
         "settings": {
             "type": ["object", "null"],
             "_db_settings": {
-                "_type": "dict"
+                "type": "dict"
             }
         }
     }

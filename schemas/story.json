@@ -9,156 +9,156 @@
         "id": {
             "type": ["integer", "string"],
             "_db_settings": {
-                "_type": "id_field",
-                "_primary_key": true
+                "type": "id_field",
+                "primary_key": true
             }
         },
         "created_at": {
             "type": ["string", "null"],
             "format": "date-time",
             "_db_settings": {
-                "_type": "datetime",
-                "_default": "{{datetime.datetime.utcnow}}"
+                "type": "datetime",
+                "default": "{{datetime.datetime.utcnow}}"
             }
         },
         "updated_at": {
             "type": ["string", "null"],
             "format": "date-time",
             "_db_settings": {
-                "_type": "datetime",
-                "_onupdate": "{{datetime.datetime.utcnow}}"
+                "type": "datetime",
+                "onupdate": "{{datetime.datetime.utcnow}}"
             }
         },
         "start_date": {
             "type": ["string", "null"],
             "format": "date-time",
             "_db_settings": {
-                "_type": "datetime"
+                "type": "datetime"
             }
         },
         "due_date": {
             "type": ["string", "null"],
             "format": "date-time",
             "_db_settings": {
-                "_type": "datetime"
+                "type": "datetime"
             }
         },
         "name": {
             "type": "string",
             "_db_settings": {
-                "_required": true,
-                "_type": "string"
+                "required": true,
+                "type": "string"
             }
         },
         "description": {
             "type": "string",
             "_db_settings": {
-                "_required": true,
-                "_type": "text"
+                "required": true,
+                "type": "text"
             }
         },
         "progress": {
             "type": ["number", "null"],
             "_db_settings": {
-                "_type": "float",
-                "_default": 0
+                "type": "float",
+                "default": 0
             }
         },
         "completed": {
             "type": ["boolean", "null"],
             "default": false,
             "_db_settings": {
-                "_type": "boolean",
-                "_default": false
+                "type": "boolean",
+                "default": false
             }
         },
         "owner_id": {
             "type": ["string", "null"],
             "_db_settings": {
-                "_type": "foreign_key",
-                "_ref_document": "User",
-                "_ref_column": "user.username",
-                "_ref_column_type": "string"
+                "type": "foreign_key",
+                "ref_document": "User",
+                "ref_column": "user.username",
+                "ref_column_type": "string"
             }
         },
         "assignee_id": {
             "type": ["string", "null"],
             "_db_settings": {
-                "_type": "foreign_key",
-                "_ref_document": "User",
-                "_ref_column": "user.username",
-                "_ref_column_type": "string"
+                "type": "foreign_key",
+                "ref_document": "User",
+                "ref_column": "user.username",
+                "ref_column_type": "string"
             }
         },
         "signs_number": {
             "type": ["integer", "null"],
             "_db_settings": {
-                "_type": "big_integer"
+                "type": "big_integer"
             }
         },
         "valid_date": {
             "type": ["string", "null"],
             "pattern": "\\d{4}-\\d{2}-\\d{2}",
             "_db_settings": {
-                "_type": "date"
+                "type": "date"
             }
         },
         "valid_time": {
             "type": ["string", "null"],
             "pattern": "\\d{2}:\\d{2}:\\d{2}",
             "_db_settings": {
-                "_type": "time"
+                "type": "time"
             }
         },
         "reads": {
             "type": ["integer", "null"],
             "default": 0,
             "_db_settings": {
-                "_type": "integer",
-                "_default": 0
+                "type": "integer",
+                "default": 0
             }
         },
         "rating": {
             "type": ["integer", "null"],
             "_db_settings": {
-                "_type": "small_integer"
+                "type": "small_integer"
             }
         },
         "available_for": {
             "type": ["integer", "null"],
             "_db_settings": {
-                "_type": "interval"
+                "type": "interval"
             }
         },
         "attachment": {
             "type": ["string", "null"],
             "_db_settings": {
-                "_type": "file"
+                "type": "file"
             }
         },
         "price": {
             "type": ["number", "null"],
             "_db_settings": {
-                "_type": "decimal",
-                "_scale": 10
+                "type": "decimal",
+                "scale": 10
             }
         },
         "arbitrary_object": {
             "type": ["object", "null"],
             "_db_settings": {
-                "_type": "pickle"
+                "type": "pickle"
             }
         },
         "unicode_name": {
             "type": ["string", "null"],
             "_db_settings": {
-                "_type": "unicode"
+                "type": "unicode"
             }
         },
         "unicode_description": {
             "type": ["string", "null"],
             "_db_settings": {
-                "_type": "unicode_text"
+                "type": "unicode_text"
             }
         },
         "user": {
