@@ -27,6 +27,10 @@
         "name": {
             "required": false,
             "type": "string"
+        },
+        "settings": {
+            "required": false,
+            "type": "dict"
         }
     }
 }

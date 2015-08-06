@@ -58,6 +58,13 @@ securedBy: [x_ticket_auth]
         get:
             description: Get a particular story
 
+        /settings:
+            displayName: User settings
+            get:
+                description: Get all settings of a particular user
+            post:
+                description: Change a user's settings
+
 /stories:
     securedBy: [read_only_users]
     displayName: All stories
