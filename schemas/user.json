@@ -2,15 +2,11 @@
     "type": "object",
     "title": "User schema",
     "$schema": "http://json-schema.org/draft-03/schema",
-    "auth_fields": ["id", "username", "first_name", "last_name", "stories"],
+    "auth_fields": ["username", "first_name", "last_name", "stories"],
     "public_fields": ["username"],
     "nested_relationships": ["profile"],
     "auth_model": true,
     "properties": {
-        "id": {
-            "required": false,
-            "type": "id_field"
-        },
         "created_at": {
             "required": false,
             "type": "datetime",
