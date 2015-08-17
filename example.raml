@@ -44,6 +44,27 @@ securitySchemes:
                 allow {{user_self}} patch
 securedBy: [x_ticket_auth]
 
+/staff:
+    displayName: All stories
+    get:
+        description: Get all stories
+    post:
+        description: Create a new story
+        body:
+            application/json:
+                schema: !include schemas/staff.json
+    /{id}:
+        displayName: One story
+        get:
+            description: Get a particular story
+
+        /settings:
+            displayName: User settings
+            get:
+                description: Get all settings of a particular user
+            post:
+                description: Change a user's settings
+
 /stories:
     securedBy: [read_only_users]
     displayName: All stories

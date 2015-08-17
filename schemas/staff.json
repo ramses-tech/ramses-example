@@ -1,0 +1,36 @@
+{
+    "type": "object",
+    "title": "Story schema",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "properties": {
+        "id": {
+            "required": false,
+            "type": "id_field",
+            "args": {
+                "primary_key": true
+            }
+        },
+        "created_at": {
+            "required": false,
+            "type": "datetime",
+            "args": {
+                "default": "{{datetime.datetime.utcnow}}"
+            }
+        },
+        "updated_at": {
+            "required": false,
+            "type": "datetime",
+            "args": {
+                "onupdate": "{{datetime.datetime.utcnow}}"
+            }
+        },
+        "name": {
+            "required": false,
+            "type": "string"
+        },
+        "settings": {
+            "required": false,
+            "type": "dict"
+        }
+    }
+}
