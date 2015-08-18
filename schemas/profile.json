@@ -29,8 +29,7 @@
         "address": {
             "type": ["string", "null"],
             "_db_settings": {
-                "type": "unicode_text",
-                "required": false
+                "type": "unicode_text"
             }
         },
         "user_id": {
