@@ -1,39 +1,48 @@
 {
     "type": "object",
     "title": "User schema",
-    "$schema": "http://json-schema.org/draft-03/schema",
-    "auth_fields": ["username", "first_name", "last_name", "stories"],
-    "public_fields": ["username"],
-    "nested_relationships": ["profile"],
-    "auth_model": true,
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "_auth_fields": ["username", "first_name", "last_name", "stories"],
+    "_public_fields": ["username"],
+    "_nested_relationships": ["profile"],
+    "_auth_model": true,
+    "required": ["username", "email", "password"],
     "properties": {
         "created_at": {
-            "required": false,
-            "type": "datetime",
-            "args": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "_db_settings": {
+                "type": "datetime",
                 "default": "{{datetime.datetime.utcnow}}"
             }
         },
         "updated_at": {
-            "required": false,
-            "type": "datetime",
-            "args": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "_db_settings": {
+                "type": "datetime",
                 "onupdate": "{{datetime.datetime.utcnow}}"
             }
         },
         "profile": {
-            "required": false,
-            "type": "relationship",
-            "args": {
+            "type": ["integer", "string"],
+            "_db_settings": {
+                "type": "relationship",
                 "document": "Profile",
                 "backref_name": "user",
                 "uselist": false
             }
         },
         "stories": {
-            "required": false,
-            "type": "relationship",
-            "args": {
+            "type": ["array", "null"],
+            "items": {
+                "oneOf": [
+                    {"type": "string"},
+                    {"type": "integer"}
+                ]
+            },
+            "_db_settings": {
+                "type": "relationship",
                 "document": "Story",
                 "ondelete": "NULLIFY",
                 "backref_name": "owner",
@@ -42,9 +51,15 @@
             }
         },
         "assigned_stories": {
-            "required": false,
-            "type": "relationship",
-            "args": {
+            "type": ["array", "null"],
+            "items": {
+                "oneOf": [
+                    {"type": "string"},
+                    {"type": "integer"}
+                ]
+            },
+            "_db_settings": {
+                "type": "relationship",
                 "document": "Story",
                 "ondelete": "NULLIFY",
                 "backref_name": "assignee",
@@ -53,9 +68,12 @@
             }
         },
         "username": {
-            "required": true,
             "type": "string",
-            "args": {
+            "minLength": 1,
+            "maxLength": 50,
+            "_db_settings": {
+                "type": "string",
+                "required": true,
                 "min_length": 1,
                 "max_length": 50,
                 "unique": true,
@@ -64,61 +82,81 @@
             }
         },
         "email": {
-            "required": true,
             "type": "string",
-            "args": {
+            "format": "email",
+            "_db_settings": {
+                "type": "string",
+                "required": true,
                 "unique": true,
                 "before_validation": ["lower_strip_processor"]
             }
         },
         "password": {
-            "required": true,
             "type": "string",
-            "args": {
+            "minLength": 3,
+            "_db_settings": {
+                "type": "string",
+                "required": true,
                 "min_length": 3,
                 "after_validation": ["crypt_processor"]
             }
         },
         "first_name": {
-            "required": false,
-            "type": "string",
-            "args": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "default": "",
+            "_db_settings": {
+                "type": "string",
                 "max_length": 50,
                 "default": ""
             }
         },
         "last_name": {
-            "required": false,
-            "type": "string",
-            "args": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "default": "",
+            "_db_settings": {
+                "type": "string",
                 "max_length": 50,
                 "default": ""
             }
         },
         "last_login": {
-            "required": false,
-            "type": "datetime"
+            "type": ["string", "null"],
+            "format": "date-time",
+            "_db_settings": {
+                "type": "datetime"
+            }
         },
         "groups": {
-            "required": false,
-            "type": "list",
-            "args": {
+            "type": ["array", "null"],
+            "items": {
+                "type": "string",
+                "enum": ["admin", "user"]
+            },
+            "default": ["user"],
+            "_db_settings": {
+                "type": "list",
                 "choices": ["admin", "user"],
                 "default": ["user"],
                 "item_type": "string"
             }
         },
         "status": {
-            "required": false,
-            "type": "choice",
-            "args": {
+            "type": ["string", "null"],
+            "enum": ["active", "inactive", "blocked"],
+            "default": "active",
+            "_db_settings": {
+                "type": "choice",
                 "choices": ["active", "inactive", "blocked"],
                 "default": "active"
             }
         },
         "settings": {
-            "required": false,
-            "type": "dict"
+            "type": ["object", "null"],
+            "_db_settings": {
+                "type": "dict"
+            }
         }
     }
 }
