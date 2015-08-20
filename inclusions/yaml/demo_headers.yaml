@@ -1,0 +1,6 @@
+Content-Length:
+    displayName: ContentLength
+    description: Demo content length header
+    type: integer
+    required: true
+    minimum: 1

@@ -1,0 +1,45 @@
+{
+    "id": "collectionDeleteResponseSchema",
+    "type": "object",
+    "title": "Collection response schema",
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "properties": {
+        "timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "title": {
+            "type": "string"
+        },
+        "status_code": {
+            "type": "integer"
+        },
+        "explanation": {
+            "type": "string"
+        },
+        "message": {
+            "type": ["string", "null"]
+        },
+        "extra": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "confirmation_url": {
+                    "type": "string",
+                    "pattern": "http(s?)://"
+                },
+                "method": {
+                    "type": "string",
+                    "enum": ["delete", "DELETE"]
+                }
+            },
+            "required": ["count", "confirmation_url", "method"]
+        }
+    },
+    "required": [
+        "timestamp", "title", "status_code", "explanation",
+        "message", "extra"
+    ]
+}

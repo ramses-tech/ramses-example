@@ -1,0 +1,14 @@
+200:
+    headers:
+        Content-Length:
+            displayName: ContentLength
+            description: Demo content length header
+            type: integer
+            required: true
+            minimum: 0
+            maximum: 0
+        Allow:
+            displayName: AllowedMethods
+            description: Allowed methods
+            type: string
+            required: true

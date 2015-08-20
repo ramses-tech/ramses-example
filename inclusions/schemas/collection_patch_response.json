@@ -1,0 +1,31 @@
+{
+    "id": "collectionPatchResponseSchema",
+    "type": "object",
+    "title": "Collection response schema",
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "properties": {
+        "explanation": {
+            "type": "string"
+        },
+        "message": {
+            "type": "string"
+        },
+        "request_url": {
+            "type": "string"
+        },
+        "status_code": {
+            "type": "integer"
+        },
+        "timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "title": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "explanation", "message", "request_url", "status_code",
+        "timestamp", "title"
+    ]
+}

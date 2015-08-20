@@ -1,0 +1,22 @@
+q:
+    displayName: Query
+    type: string
+    required: false
+    example: foobar
+    minLength: 1
+_limit:
+    displayName: Limit
+    type: integer
+    required: false
+    minimum: 1
+    example: 10
+_start:
+    displayName: Start
+    type: integer
+    required: false
+    minimum: 1
+    example: 12
+_count:
+    displayName: Count
+    type: boolean
+    required: false
