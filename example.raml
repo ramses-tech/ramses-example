@@ -44,39 +44,6 @@ securitySchemes:
                 allow {{user_self}} patch
 securedBy: [x_ticket_auth]
 
-/stories:
-    securedBy: [read_only_users]
-    displayName: All stories
-    get:
-        description: Get all stories
-    post:
-        description: Create a new story
-        body:
-            application/json:
-                schema: !include schemas/story.json
-    patch:
-        description: Update multiple stories
-    delete:
-        description: Delete multiple stories
-    head:
-        description: Determine whether a given resource is available
-    options:
-        description: Retrieve the available HTTP verbs for a given resource
-
-    /{id}:
-        displayName: One story
-        get:
-            description: Get a particular story
-        delete:
-            description: Delete a particular story
-        patch:
-        put:
-            description: Update a particular story
-        head:
-            description: Determine whether a given resource is available
-        options:
-            description: Retrieve the available HTTP verbs for a given resource
-
 /users:
     securedBy: [read_only_useritem_everyone]
     displayName: All users
@@ -129,3 +96,36 @@ securedBy: [x_ticket_auth]
                         schema: !include schemas/profile.json
             patch:
                 description: Update a user's profile
+
+/stories:
+    securedBy: [read_only_users]
+    displayName: All stories
+    get:
+        description: Get all stories
+    post:
+        description: Create a new story
+        body:
+            application/json:
+                schema: !include schemas/story.json
+    patch:
+        description: Update multiple stories
+    delete:
+        description: Delete multiple stories
+    head:
+        description: Determine whether a given resource is available
+    options:
+        description: Retrieve the available HTTP verbs for a given resource
+
+    /{id}:
+        displayName: One story
+        get:
+            description: Get a particular story
+        delete:
+            description: Delete a particular story
+        patch:
+        put:
+            description: Update a particular story
+        head:
+            description: Determine whether a given resource is available
+        options:
+            description: Retrieve the available HTTP verbs for a given resource

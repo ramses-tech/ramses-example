@@ -1,41 +1,48 @@
 {
     "type": "object",
     "title": "Profile schema",
-    "$schema": "http://json-schema.org/draft-03/schema",
+    "$schema": "http://json-schema.org/draft-04/schema",
     "properties": {
         "id": {
-            "required": false,
-            "type": "id_field",
-            "args": {
+            "type": ["integer", "string"],
+            "_db_settings": {
+                "type": "id_field",
                 "primary_key": true
             }
         },
         "created_at": {
-            "required": false,
-            "type": "datetime",
-            "args": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "_db_settings": {
+                "type": "datetime",
                 "default": "{{datetime.datetime.utcnow}}"
             }
         },
         "updated_at": {
-            "required": false,
-            "type": "datetime",
-            "args": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "_db_settings": {
+                "type": "datetime",
                 "onupdate": "{{datetime.datetime.utcnow}}"
             }
         },
         "address": {
-            "required": false,
-            "type": "unicode_text"
+            "type": ["string", "null"],
+            "_db_settings": {
+                "type": "unicode_text"
+            }
         },
         "user_id": {
-            "required": false,
-            "type": "foreign_key",
-            "args": {
+            "type": ["string", "null"],
+            "_db_settings": {
+                "type": "foreign_key",
                 "ref_document": "User",
                 "ref_column": "user.username",
                 "ref_column_type": "string"
             }
+        },
+        "user": {
+            "type": ["string", "null"]
         }
     }
 }
