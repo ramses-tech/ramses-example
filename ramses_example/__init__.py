@@ -17,9 +17,7 @@ registry.add('User.is_admin', classmethod(my_is_admin))
 def user_self(ace, request, obj):
     """ Give 'patch' permission to user that is being created. """
     from pyramid.security import Allow
-    user = getattr(request, 'user', None)
-    if user is not None and user.username == obj.username:
-        return [(Allow, str(user.username), 'patch')]
+    return [(Allow, str(obj.username), 'patch')]
 
 
 @registry.add
