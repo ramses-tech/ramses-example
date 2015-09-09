@@ -9,6 +9,7 @@ auth = true
 auth_tkt_secret = verysecret
 enable_get_tunneling = true
 public_max_limit = 100
+database_acls = false
 
 system.user = system
 system.password = 123456

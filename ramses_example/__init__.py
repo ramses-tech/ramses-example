@@ -15,13 +15,9 @@ registry.add('User.is_admin', classmethod(my_is_admin))
 
 @registry.add
 def user_self(ace, request, obj):
-    """ Give 'update' permission to user when trying to edit itself """
+    """ Give 'update' permission to user that is being created. """
     from pyramid.security import Allow
-    user = getattr(request, 'user', None)
-    if user is not None and user.username == obj.username:
-        return [
-            (Allow, str(user.username), 'update'),
-        ]
+    return [(Allow, str(obj.username), 'update')]
 
 
 @registry.add
