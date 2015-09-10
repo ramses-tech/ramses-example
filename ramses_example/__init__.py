@@ -21,20 +21,18 @@ def user_self(ace, request, obj):
 
 
 @registry.add
-def lower_strip_processor(**kwargs):
+def lowercase(event):
     """ Make :new_value: lowercase (and stripped) """
-    new_value = kwargs['new_value']
-    if new_value is None:
-        return new_value
-    return new_value.lower().strip()
+    value = (event.field.new_value or '').lower().strip()
+    event.set_field_value(value)
 
 
 @registry.add
-def crypt_processor(**kwargs):
+def encrypt(event):
     """ Crypt :new_value: if it's not crypted yet """
     import cryptacular.bcrypt
-    new_value = kwargs['new_value']
-    field = kwargs['field']
+    field = event.field
+    new_value = field.new_value
     min_length = field.params['min_length']
     if len(new_value) < min_length:
         raise ValueError(
@@ -43,8 +41,9 @@ def crypt_processor(**kwargs):
 
     crypt = cryptacular.bcrypt.BCRYPTPasswordManager()
     if new_value and not crypt.match(new_value):
-        new_value = str(crypt.encode(new_value))
-    return new_value
+        encrypted = str(crypt.encode(new_value))
+        field.new_value = encrypted
+        event.set_field_value(encrypted)
 
 
 def main(global_config, **settings):

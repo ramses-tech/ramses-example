@@ -77,8 +77,10 @@
                 "min_length": 1,
                 "max_length": 50,
                 "unique": true,
-                "primary_key": true,
-                "before_validation": ["lower_strip_processor"]
+                "primary_key": true
+            },
+            "_event_handlers": {
+                "before_set": ["lowercase"]
             }
         },
         "email": {
@@ -87,8 +89,10 @@
             "_db_settings": {
                 "type": "string",
                 "required": true,
-                "unique": true,
-                "before_validation": ["lower_strip_processor"]
+                "unique": true
+            },
+            "_event_handlers": {
+                "before_set": ["lowercase"]
             }
         },
         "password": {
@@ -97,8 +101,10 @@
             "_db_settings": {
                 "type": "string",
                 "required": true,
-                "min_length": 3,
-                "before_validation": ["crypt_processor"]
+                "min_length": 3
+            },
+            "_event_handlers": {
+                "before_set": ["encrypt"]
             }
         },
         "first_name": {
