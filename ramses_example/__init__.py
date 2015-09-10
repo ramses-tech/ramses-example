@@ -25,14 +25,14 @@ def user_self(ace, request, obj):
 
 
 @registry.add
-def lower_strip_processor(event):
+def lowercase(event):
     """ Make :new_value: lowercase (and stripped) """
     value = (event.field.new_value or '').lower().strip()
     event.set_field_value(value)
 
 
 @registry.add
-def crypt_processor(event):
+def encrypt(event):
     """ Crypt :new_value: if it's not crypted yet """
     import cryptacular.bcrypt
     field = event.field

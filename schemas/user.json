@@ -80,7 +80,7 @@
                 "primary_key": true
             },
             "_event_handlers": {
-                "before_set": ["lower_strip_processor"]
+                "before_set": ["lowercase"]
             }
         },
         "email": {
@@ -92,7 +92,7 @@
                 "unique": true
             },
             "_event_handlers": {
-                "before_set": ["lower_strip_processor"]
+                "before_set": ["lowercase"]
             }
         },
         "password": {
@@ -104,7 +104,7 @@
                 "min_length": 3
             },
             "_event_handlers": {
-                "before_set": ["crypt_processor"]
+                "before_set": ["encrypt"]
             }
         },
         "first_name": {
