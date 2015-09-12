@@ -27,21 +27,21 @@ securitySchemes:
         settings:
             collection: |
                 allow g:admin all
-                allow authenticated get
+                allow authenticated view
             item: |
                 allow g:admin all
-                allow authenticated get
+                allow authenticated view
     - read_only_useritem_everyone:
         description: ACL that allows everyone to read item, authenticated users to read collection
         type: x-ACL
         settings:
             collection: |
                 allow g:admin all
-                allow authenticated get
+                allow authenticated view
             item: |
                 allow g:admin all
-                allow everyone get
-                allow {{user_self}} patch
+                allow everyone view
+                allow {{user_self}} update
 securedBy: [x_ticket_auth]
 
 /users:
