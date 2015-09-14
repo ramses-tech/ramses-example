@@ -27,14 +27,16 @@ def item_owner(ace, request, obj):
     owner = obj.owner
     if hasattr(owner, 'username'):
         owner = owner.username
-    return [(Allow, str(owner), 'update')]
+    if owner is not None:
+        return [(Allow, str(owner), 'update')]
 
 
 @registry.add
 def set_item_owner(event):
     """ Set owner of an item. """
-    if 'owner' not in event.fields:
-        event.set_field_value(event.view.request.user, 'owner')
+    user = getattr(event.view.request, 'user', None)
+    if 'owner' not in event.fields and user is not None:
+        event.set_field_value(user, 'owner')
 
 
 @registry.add
