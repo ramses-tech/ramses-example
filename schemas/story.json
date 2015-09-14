@@ -5,6 +5,9 @@
     "_auth_fields": ["id", "start_date", "due_date", "name", "description", "progress"],
     "_public_fields": ["id", "start_date", "due_date", "name"],
     "required": ["name", "description"],
+    "_event_handlers": {
+        "before_create": ["set_item_owner"]
+    },
     "properties": {
         "id": {
             "type": ["integer", "string"],

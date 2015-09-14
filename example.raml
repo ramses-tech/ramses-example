@@ -21,31 +21,34 @@ securitySchemes:
             hashalg: sha512
             cookie_name: ramses_auth_tkt
             http_only: true
-    - read_only_users:
-        description: ACL that allows authenticated users to read collection
+    - item_owner_acl:
+        description: ACL that allows everyone to read, authenticated to create and item owners to edit item
         type: x-ACL
         settings:
             collection: |
                 allow g:admin all
-                allow authenticated view
+                allow everyone view,options
+                allow authenticated create
             item: |
                 allow g:admin all
-                allow authenticated view
-    - read_only_useritem_everyone:
-        description: ACL that allows everyone to read item, authenticated users to read collection
+                allow everyone view,options
+                allow {{item_owner}} update
+    - user_self_acl:
+        description: ACL that allows everyone to read, authenticated to create and owner to edit
         type: x-ACL
         settings:
             collection: |
                 allow g:admin all
-                allow authenticated view
+                allow everyone view,options
+                allow authenticated create
             item: |
                 allow g:admin all
-                allow everyone view
+                allow everyone view,options
                 allow {{user_self}} update
 securedBy: [x_ticket_auth]
 
 /users:
-    securedBy: [read_only_useritem_everyone]
+    securedBy: [user_self_acl]
     displayName: All users
     get:
         description: Get all users
@@ -98,7 +101,7 @@ securedBy: [x_ticket_auth]
                 description: Update a user's profile
 
 /stories:
-    securedBy: [read_only_users]
+    securedBy: [item_owner_acl]
     displayName: All stories
     get:
         description: Get all stories
