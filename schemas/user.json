@@ -4,6 +4,7 @@
     "$schema": "http://json-schema.org/draft-04/schema",
     "_auth_fields": ["username", "first_name", "last_name", "stories"],
     "_public_fields": ["username"],
+    "_hidden_fields": ["password"],
     "_nested_relationships": ["profile"],
     "_auth_model": true,
     "required": ["username", "email", "password"],
