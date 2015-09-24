@@ -79,9 +79,7 @@
                 "unique": true,
                 "primary_key": true
             },
-            "_event_handlers": {
-                "before_set": ["lowercase"]
-            }
+            "_validators": ["lowercase"]
         },
         "email": {
             "type": "string",
@@ -91,9 +89,7 @@
                 "required": true,
                 "unique": true
             },
-            "_event_handlers": {
-                "before_set": ["lowercase"]
-            }
+            "_validators": ["lowercase"]
         },
         "password": {
             "type": "string",
@@ -103,9 +99,7 @@
                 "required": true,
                 "min_length": 3
             },
-            "_event_handlers": {
-                "before_set": ["encrypt"]
-            }
+            "_validators": ["encrypt"]
         },
         "first_name": {
             "type": ["string", "null"],
