@@ -21,6 +21,25 @@ def user_self(ace, request, obj):
 
 
 @registry.add
+def item_owner(ace, request, obj):
+    """ Give 'update' permission to item owner. """
+    from pyramid.security import Allow
+    owner = obj.owner
+    if hasattr(owner, 'username'):
+        owner = owner.username
+    if owner is not None:
+        return [(Allow, str(owner), 'update')]
+
+
+@registry.add
+def set_item_owner(event):
+    """ Set owner of an item. """
+    user = getattr(event.view.request, 'user', None)
+    if 'owner' not in event.fields and user is not None:
+        event.set_field_value(user, 'owner')
+
+
+@registry.add
 def lowercase(event):
     """ Make :new_value: lowercase (and stripped) """
     value = (event.field.new_value or '').lower().strip()
