@@ -36,7 +36,7 @@ def set_item_owner(event):
     """ Set owner of an item. """
     user = getattr(event.view.request, 'user', None)
     if 'owner' not in event.fields and user is not None:
-        event.set_field_value(user, 'owner')
+        event.set_field_value('owner', user)
 
 
 @registry.add
