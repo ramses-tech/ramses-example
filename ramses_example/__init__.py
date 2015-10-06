@@ -36,22 +36,21 @@ def set_item_owner(event):
     """ Set owner of an item. """
     user = getattr(event.view.request, 'user', None)
     if 'owner' not in event.fields and user is not None:
-        event.set_field_value(user, 'owner')
+        event.set_field_value('owner', user)
 
 
 @registry.add
-def lowercase(event):
+def lowercase(**kwargs):
     """ Make :new_value: lowercase (and stripped) """
-    value = (event.field.new_value or '').lower().strip()
-    event.set_field_value(value)
+    return (kwargs['new_value'] or '').lower().strip()
 
 
 @registry.add
-def encrypt(event):
+def encrypt(**kwargs):
     """ Crypt :new_value: if it's not crypted yet """
     import cryptacular.bcrypt
-    field = event.field
-    new_value = field.new_value
+    new_value = kwargs['new_value']
+    field = kwargs['field']
     min_length = field.params['min_length']
     if len(new_value) < min_length:
         raise ValueError(
@@ -60,9 +59,8 @@ def encrypt(event):
 
     crypt = cryptacular.bcrypt.BCRYPTPasswordManager()
     if new_value and not crypt.match(new_value):
-        encrypted = str(crypt.encode(new_value))
-        field.new_value = encrypted
-        event.set_field_value(encrypted)
+        new_value = str(crypt.encode(new_value))
+    return new_value
 
 
 def main(global_config, **settings):
