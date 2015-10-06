@@ -50,6 +50,9 @@ def encrypt(**kwargs):
     """ Crypt :new_value: if it's not crypted yet """
     import cryptacular.bcrypt
     new_value = kwargs['new_value']
+    if kwargs['event'].is_auth_view:
+        return new_value
+
     field = kwargs['field']
     min_length = field.params['min_length']
     if len(new_value) < min_length:
