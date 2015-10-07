@@ -43,9 +43,13 @@ cors.allow_credentials = true
 
 request_timing.enable = true
 
+version = v1
+
 [composite:main]
 use = egg:Paste#urlmap
-/api/ = ramses_example
+
+# needs to match path of baseUri in the RAML:
+/v1/ = ramses_example
 
 [server:main]
 use = egg:waitress#main
