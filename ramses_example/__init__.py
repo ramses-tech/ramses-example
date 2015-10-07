@@ -63,6 +63,19 @@ def encrypt(**kwargs):
     return new_value
 
 
+@registry.add
+def set_last_login(event):
+    from datetime import datetime
+    from nefertari import engine
+    User = engine.get_document_cls('User')
+    login = event.fields['login'].new_value
+    field = 'email' if '@' in login else 'username'
+    user = User.get_item(**{field: login})
+    if user is not None:
+        user.update({'last_login': datetime.now()},
+                    event.view.request)
+
+
 def main(global_config, **settings):
     config = Configurator(settings=settings)
     config.include('ramses')
