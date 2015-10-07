@@ -56,8 +56,33 @@ securedBy: [x_ticket_auth]
         body:
             application/json:
                 schema: !include schemas/user.json
+                example: |
+                    {
+                        "username": "rick",
+                        "email": "RICK@example.com",
+                        "password": "megatrees",
+                        "first_name": "Rick"
+                    }
+        responses:
+            201:
+                description: Created user
+                body:
+                    application/json:
+                        schema: !include schemas/user.json
+                headers:
+                    Location:
+                        description: The URL where the created user is available
+                        type: string
+                        pattern: "http.*"
+                        example: http://localhost:6543/api/users/rick
+
     patch:
         description: Update multiple users
+        body:
+            application/json:
+                example: |
+                    { "last_name": "Sanchez" }
+
     head:
         description: Determine whether a given resource is available
     options:
@@ -65,11 +90,59 @@ securedBy: [x_ticket_auth]
 
     /{username}:
         displayName: One user
+
+        uriParameters:
+            username:
+                type: string
+                maxLength: 50
+                example: rick
+
         get:
             description: Get a particular user
-        patch:
+            responses:
+                200:
+                    body:
+                        application/json:
+                            schema: !include schemas/user.json
+
         put:
+            description: Replace a particular user
+            body:
+                application/json:
+                    example: |
+                        {
+                            "username": "morty",
+                            "email": "morty@example.com",
+                            "first_name": "Mortimer",
+                            "last_name": "Smith",
+                            "password": "$2a$10$RrAZgBWzCXaBR.uM83AOg.YzYfnhxujau7JuQ2enP1ota3lgyt/9S",
+                            "status": "active",
+                            "profile": null,
+                            "groups": ["user"],
+                            "settings": {},
+                            "stories": [],
+                            "assigned_stories": [],
+                            "last_login": null,
+                            "created_at": "2015-09-11T02:13:29Z",
+                            "updated_at": "2015-09-11T03:48:55Z"
+                        }
+            responses:
+                200:
+                    body:
+                        application/json:
+                            schema: !include schemas/user.json
+
+        patch:
             description: Update a particular user
+            body:
+                application/json:
+                    example: { "username": "rickC137" }
+            responses:
+                200:
+                    body:
+                        application/json:
+                            schema: !include schemas/user.json
+
         delete:
             description: Delete a particular user
 
@@ -79,6 +152,9 @@ securedBy: [x_ticket_auth]
                 description: Get all settings of a particular user
             post:
                 description: Change a user's settings
+                body:
+                    application/json:
+                        example: { "language": "en" }
 
         /groups:
             displayName: User groups
@@ -86,6 +162,9 @@ securedBy: [x_ticket_auth]
                 description: Get all groups of a particular user
             post:
                 description: Change a user's groups
+                body:
+                    application/json:
+                        example: { "admin": null }
 
         /profile:
             displayName: User profile
@@ -96,21 +175,56 @@ securedBy: [x_ticket_auth]
                 body:
                     application/json:
                         schema: !include schemas/profile.json
+                        example: { "address": "123 Fake St" }
+                responses:
+                    200:
+                        body:
+                            application/json:
+                                schema: !include schemas/profile.json
             patch:
                 description: Update a user's profile
+                body:
+                    application/json:
+                        example: { "address": "124 Pretend Rd" }
+                responses:
+                    200:
+                        body:
+                            application/json:
+                                schema: !include schemas/profile.json
 
 /stories:
     securedBy: [item_owner_acl]
     displayName: All stories
+
     get:
         description: Get all stories
+
     post:
         description: Create a new story
         body:
             application/json:
                 schema: !include schemas/story.json
+                example: |
+                    {
+                        "owner_id": "rick",
+                        "due_date": "2020-11-11T11:11:11Z",
+                        "name": "do science",
+                        "description": "real sciency stuff"
+                    }
+        responses:
+            201:
+                description: Created story
+                body:
+                    application/json:
+
+                        schema: !include schemas/story.json
+
     patch:
         description: Update multiple stories
+        body:
+            application/json:
+                example: { "assignee_id": "rick" }
+
     delete:
         description: Delete multiple stories
     head:
@@ -120,13 +234,70 @@ securedBy: [x_ticket_auth]
 
     /{id}:
         displayName: One story
+
+        uriParameters:
+            id:
+                description: story ID
+                type: integer
+                minimum: 1
+                example: 1
+
         get:
             description: Get a particular story
+            responses:
+                200:
+                    body:
+                        application/json:
+                            schema: !include schemas/story.json
+
+        put:
+            description: Replace a particular story
+            body:
+                application/json:
+                    example: |
+                        {
+                            "owner_id": "rick",
+                            "due_date": "2020-11-11T11:11:11Z",
+                            "name": "watch TV",
+                            "description": "not very sciency",
+                            "assignee_id": "rick",
+                            "arbitrary_object": null,
+                            "attachment": null,
+                            "available_for": null,
+                            "completed": false,
+                            "created_at": "2015-09-11T05:01:27Z",
+                            "id": 516,
+                            "price": null,
+                            "progress": 0.0,
+                            "rating": null,
+                            "reads": 0,
+                            "signs_number": null,
+                            "start_date": null,
+                            "unicode_description": null,
+                            "unicode_name": null,
+                            "updated_at": null,
+                            "valid_date": null,
+                            "valid_time": null
+                        }
+            responses:
+                200:
+                    body:
+                        application/json:
+                            schemas: !include schemas/story.json
+
+        patch:
+            description: Update a story
+            body:
+                application/json:
+                    example: { "completed": true }
+            responses:
+                200:
+                    body:
+                        application/json:
+                            schemas: !include schemas/story.json
+
         delete:
             description: Delete a particular story
-        patch:
-        put:
-            description: Update a particular story
         head:
             description: Determine whether a given resource is available
         options:

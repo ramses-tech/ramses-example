@@ -6,5 +6,6 @@ nefertari==0.5.1
 nefertari-mongodb==0.3.3
 nefertari-sqla==0.3.3
 ramses==0.4.1
+ra
 
 -e .

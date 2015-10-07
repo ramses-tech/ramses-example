@@ -26,7 +26,7 @@
             }
         },
         "profile": {
-            "type": ["integer", "string"],
+            "type": ["integer", "string", "null"],
             "_db_settings": {
                 "type": "relationship",
                 "document": "Profile",
