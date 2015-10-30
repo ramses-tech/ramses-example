@@ -21,6 +21,14 @@ def user_self(ace, request, obj):
 
 
 @registry.add
+def user_profile(ace, request, obj):
+    """ Give ALL_PERMISSIONS permission to profile's user. """
+    from pyramid.security import Allow, ALL_PERMISSIONS
+    username = request.matchdict['users_username']
+    return [(Allow, str(username), ALL_PERMISSIONS)]
+
+
+@registry.add
 def item_owner(ace, request, obj):
     """ Give 'update' permission to item owner. """
     from pyramid.security import Allow
