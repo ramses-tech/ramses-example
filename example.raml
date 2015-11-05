@@ -44,6 +44,16 @@ securitySchemes:
                 allow g:admin all
                 allow everyone view,options
                 allow {{user_self}} update
+    - user_profile_acl:
+        description: ACL gives all permissions to admins and profile's user
+        type: x-ACL
+        settings:
+            collection: |
+                allow g:admin all
+                allow {{user_profile}} all
+            item: |
+                allow g:admin all
+                allow {{user_profile}} all
 securedBy: [x_ticket_auth]
 
 /users:
@@ -88,6 +98,7 @@ securedBy: [x_ticket_auth]
                 description: Change a user's groups
 
         /profile:
+            securedBy: [user_profile_acl]
             displayName: User profile
             get:
                 description: Get a user's profile
