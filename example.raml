@@ -56,6 +56,7 @@ securedBy: [x_ticket_auth]
         body:
             application/json:
                 schema: !include schemas/user.json
+                # uppercase used in email to test use of lowercase processor
                 example: |
                     {
                         "username": "rick",
