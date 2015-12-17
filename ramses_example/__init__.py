@@ -36,7 +36,7 @@ def item_owner(ace, request, obj):
     if hasattr(owner, 'username'):
         owner = owner.username
     if owner is not None:
-        return [(Allow, str(owner), 'update')]
+        return [(Allow, str(owner), ['view','update'])]
 
 
 @registry.add
