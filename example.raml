@@ -31,8 +31,7 @@ securitySchemes:
                 allow authenticated create
             item: |
                 allow g:admin all
-                allow everyone view,options
-                allow {{item_owner}} update
+                allow {{item_owner}} view, update
     - user_self_acl:
         description: ACL that allows everyone to read, authenticated to create and owner to edit
         type: x-ACL
@@ -44,6 +43,16 @@ securitySchemes:
                 allow g:admin all
                 allow everyone view,options
                 allow {{user_self}} update
+    - user_profile_acl:
+        description: ACL gives all permissions to admins and profile's user
+        type: x-ACL
+        settings:
+            collection: |
+                allow g:admin all
+                allow {{user_profile}} all
+            item: |
+                allow g:admin all
+                allow {{user_profile}} all
 securedBy: [x_ticket_auth]
 
 /users:
@@ -168,6 +177,7 @@ securedBy: [x_ticket_auth]
                         example: { "admin": null }
 
         /profile:
+            securedBy: [user_profile_acl]
             displayName: User profile
             get:
                 description: Get a user's profile

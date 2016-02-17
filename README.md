@@ -1,5 +1,5 @@
 # `ramses-example`
-Example of a Pyramid app using [ramses](https://github.com/brandicted/ramses)
+Example of a Pyramid app using [ramses](https://github.com/ramses-tech/ramses)
     - example.raml: RAML specs
     - schemas/*.json: schemas and property definitions
 
@@ -34,9 +34,9 @@ or in the browser:
 ## Add mock data
 ```
 $ mkdir mock
-$ curl -o mock/Users.json https://raw.githubusercontent.com/brandicted/nefertari-example/master/mock/Users.json
-$ curl -o mock/Profiles.json https://raw.githubusercontent.com/brandicted/nefertari-example/master/mock/Profiles.json
-$ curl -o mock/Stories.json https://raw.githubusercontent.com/brandicted/nefertari-example/master/mock/Stories.json
+$ curl -o mock/Users.json https://raw.githubusercontent.com/ramses-tech/nefertari-example/master/mock/Users.json
+$ curl -o mock/Profiles.json https://raw.githubusercontent.com/ramses-tech/nefertari-example/master/mock/Profiles.json
+$ curl -o mock/Stories.json https://raw.githubusercontent.com/ramses-tech/nefertari-example/master/mock/Stories.json
 $ nefertari.post2api -f ./mock/Users.json -u http://localhost:6543/api/users
 $ nefertari.post2api -f ./mock/Profiles.json -u http://localhost:6543/api/users/{username}/profile
 $ nefertari.post2api -f ./mock/Stories.json -u http://localhost:6543/api/stories
