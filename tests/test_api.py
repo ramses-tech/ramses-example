@@ -1,59 +1,64 @@
-import os
-
-import pytest
-import webtest
-import ramses
 import ra
+import pytest
 
-appdir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-ramlfile = os.path.join(appdir, 'example.raml')
-
-if not os.path.exists(os.path.join(appdir, 'test.ini')):
-    raise Exception(
-        "Could not find test.ini in root of project: "
-        "Create a test.ini configured with testing DB and ES index")
-
-testapp = webtest.TestApp('config:test.ini', relative_to=appdir)
 
 # ra entry point: instantiate the API test suite
-api = ra.api(ramlfile, testapp)
-
-User = ramses.models.get_existing_model('User')
-Story = ramses.models.get_existing_model('Story')
-Profile = ramses.models.get_existing_model('Profile')
+api = ra.api('example.raml')
 
 
-@api.hooks.before_each
-def delete_resources():
-    Profile._delete_many(Profile.get_collection())
-    Story._delete_many(Story.get_collection())
-    User._delete_many(User.get_collection())
+@pytest.fixture(scope='session')
+def models():
+    import ramses.models
+    return dict(
+        User=ramses.models.get_existing_model('User'),
+        Profile=ramses.models.get_existing_model('Profile'),
+        Story=ramses.models.get_existing_model('Story'))
+
+
+# perform any necessary test setup
+@pytest.fixture(autouse=True)
+def setup(req, examples, models):
+    User = models['User']
+    Story = models['Story']
+    Profile = models['Profile']
+
     import transaction
-    transaction.commit()
+    import time
 
+    def delete_data():
+        Profile._delete_many(Profile.get_collection())
+        Story._delete_many(Story.get_collection())
+        User._delete_many(User.get_collection())
+        transaction.commit()
 
-@api.hooks.before_each(exclude=['POST /users'])
-def create_user():
-    User(**api.examples.build('user')).save()
-    # XXX: it takes some time for the object to be propagated to ES.
-    # This is not ideal at all.
-    import time; time.sleep(2)
+    def create_user():
+        example = examples.build('user')
+        user = User(**example).save()
+        # XXX: it takes some time for the object to be propagated to ES.
+        # This is not ideal at all.
+        time.sleep(2)
+        return user
 
+    def create_profile(user_id):
+        example = examples.build('user.profile', user_id=user_id)
+        Profile(**example).save()
+        time.sleep(2)
 
-@api.hooks.before_each(only=['PATCH /users/{username}/profile'])
-def create_profile():
-    Profile(**api.examples.build('user.profile', user_id='rick')).save()
-    import time; time.sleep(2)
+    def create_story():
+        example = examples.build('story', id=1)
+        Story(**example).save()
 
+    delete_data()
 
-@api.hooks.before_each(only=['/stories*'], exclude=['POST'])
-def create_story():
-    Story(**api.examples.build('story', id=1)).save()
-    import time; time.sleep(2)
+    if req.match(exclude='POST /users'):
+        user = create_user()
 
+        if req.match('PATCH /users/{username}/profile'):
+            create_profile(user.username)
 
-@api.hooks.before_each
-def commit():
+    if req.match('/stories*', exclude='POST'):
+        create_story()
+
     import transaction
     transaction.commit()
 
