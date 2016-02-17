@@ -1,16 +1,17 @@
 import os
-import ra
+
 import pytest
 import webtest
 import ramses
-
+import ra
 
 appdir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 ramlfile = os.path.join(appdir, 'example.raml')
 
 if not os.path.exists(os.path.join(appdir, 'test.ini')):
-    raise Exception("Could not find test.ini in root of project: "
-                    "Create a test.ini configured with testing DB and ES index")
+    raise Exception(
+        "Could not find test.ini in root of project: "
+        "Create a test.ini configured with testing DB and ES index")
 
 testapp = webtest.TestApp('config:test.ini', relative_to=appdir)
 
@@ -47,8 +48,9 @@ def create_profile():
 
 @api.hooks.before_each(only=['/stories*'], exclude=['POST'])
 def create_story():
-    story = Story(**api.examples.build('story', id=1)).save()
+    Story(**api.examples.build('story', id=1)).save()
     import time; time.sleep(2)
+
 
 @api.hooks.before_each
 def commit():
@@ -100,7 +102,8 @@ def users_resource(users):
     def _user_factory():
         import string
         import random
-        name = ''.join(random.choice(string.ascii_lowercase) for _ in range(10))
+        name = ''.join(random.choice(string.ascii_lowercase)
+                       for _ in range(10))
         email = "{}@example.com".format(name)
         return dict(username=name, email=email, password=name)
 
