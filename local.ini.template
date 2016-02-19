@@ -15,6 +15,11 @@ system.user = system
 system.password = 123456
 system.email = user@domain.com
 
+# Database configuration:
+#
+# Note on testing: copy this template to test.ini and use a different database
+# and elasticsearch index, as they will be wiped on each test run.
+
 # SQLA
 sqlalchemy.url = postgresql://localhost:5432/ramses_example
 
