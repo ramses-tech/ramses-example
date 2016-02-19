@@ -15,6 +15,14 @@ def models():
         Story=ramses.models.get_existing_model('Story'))
 
 
+@pytest.fixture(scope='module', autouse=True)
+def drop_storages(request):
+    def _drop_es():
+        from nefertari.elasticsearch import ES
+        ES.delete_index()
+    request.addfinalizer(_drop_es)
+
+
 # perform any necessary test setup
 @pytest.fixture(autouse=True)
 def setup(req, examples, models):
@@ -45,7 +53,7 @@ def setup(req, examples, models):
         time.sleep(2)
 
     def create_story():
-        example = examples.build('story', id=1)
+        example = examples.build('story')
         Story(**example).save()
 
     delete_data()
