@@ -47,8 +47,8 @@ def setup(req, examples, models):
         time.sleep(2)
         return user
 
-    def create_profile(user_id):
-        example = examples.build('user.profile', user_id=user_id)
+    def create_profile(user):
+        example = examples.build('user.profile', user=user)
         Profile(**example).save()
         time.sleep(2)
 
@@ -62,7 +62,7 @@ def setup(req, examples, models):
         user = create_user()
 
         if req.match('PATCH /users/{username}/profile'):
-            create_profile(user.username)
+            create_profile(user)
 
     if req.match('/stories*', exclude='POST'):
         create_story()
