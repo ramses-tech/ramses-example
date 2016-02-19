@@ -8,11 +8,11 @@ api = ra.api('example.raml')
 
 @pytest.fixture(scope='session')
 def models():
-    import ramses.models
+    from nefertari import engine
     return dict(
-        User=ramses.models.get_existing_model('User'),
-        Profile=ramses.models.get_existing_model('Profile'),
-        Story=ramses.models.get_existing_model('Story'))
+        User=engine.get_document_cls('User'),
+        Profile=engine.get_document_cls('Profile'),
+        Story=engine.get_document_cls('Story'))
 
 
 @pytest.fixture(scope='module', autouse=True)
