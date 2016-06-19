@@ -7,6 +7,9 @@
     "_hidden_fields": ["password"],
     "_nested_relationships": ["profile"],
     "_auth_model": true,
+    "_event_handlers": {
+        "after_login": ["set_last_login"]
+    },
     "required": ["username", "email", "password"],
     "properties": {
         "created_at": {
